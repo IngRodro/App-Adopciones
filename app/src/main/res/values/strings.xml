@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AppMascota</string>
+    <string name="etUser_Hint">Usuario</string>
+    <string name="etPass_Hint">Contraseña</string>
+    <string name="btnLogin_Text">Iniciar Sesion</string>
+    <string name="btnRegister_Text">Registrarme</string>
+</resources>
