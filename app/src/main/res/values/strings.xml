@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">AppMascota</string>
+    <string name="etUser_Hint">Usuario</string>
+    <string name="etPass_Hint">Contraseña</string>
+    <string name="etPassConfirmed_Hint">Confirmar Contraseña</string>
+    <string name="btnLogin_Text">Iniciar Sesion</string>
+    <string name="btnNewAccount_Text">Crear Cuenta</string>
+    <string name="btnRegister_Text">Registrarme</string>
+    <string name="etNames_Hint">Nombres</string>
+    <string name="etLastNames_Hint">Apellidos</string>
+    <string name="spDepartamento_Prompt">Seleccione un Departamento</string>
+    <string name="spMunicipio_Prompt">Seleccione un Municipio</string>
+    <string name="tvDescripcion_Text">Completa los Siguientes Datos:</string>
+    <string name="tvAppName_Text">PetsApp</string>
+</resources>

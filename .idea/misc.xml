@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/r0dr0/AndroidStudioProjects/AppMascota/app/src/main/res/drawable-v24/button_rounded.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/r0dr0/AndroidStudioProjects/AppMascota/app/src/main/res/drawable-v24/ic_baseline_person_outline_24.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/r0dr0/AndroidStudioProjects/AppMascota/app/src/main/res/drawable-v24/ic_baseline_vpn_key_24.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/r0dr0/AndroidStudioProjects/AppMascota/app/src/main/res/drawable-v24/ic_key_icon_focused.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/r0dr0/AndroidStudioProjects/AppMascota/app/src/main/res/drawable-v24/ic_user_icon_focused.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/r0dr0/AndroidStudioProjects/AppMascota/app/src/main/res/drawable/custom_input.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/r0dr0/AndroidStudioProjects/AppMascota/app/src/main/res/drawable/custom_key_icon.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/r0dr0/AndroidStudioProjects/AppMascota/app/src/main/res/drawable/custom_user_icon.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/r0dr0/AndroidStudioProjects/AppMascota/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/Users/r0dr0/AndroidStudioProjects/AppMascota/app/src/main/res/drawable/ic_spinner.xml" value="0.1" />
+        <entry key="..\:/Users/r0dr0/AndroidStudioProjects/AppMascota/app/src/main/res/drawable/item_style.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/r0dr0/AndroidStudioProjects/AppMascota/app/src/main/res/drawable/spin_style.xml" value="0.1" />
+        <entry key="..\:/Users/r0dr0/AndroidStudioProjects/AppMascota/app/src/main/res/drawable/spinner_style.xml" value="0.1" />
+        <entry key="..\:/Users/r0dr0/AndroidStudioProjects/AppMascota/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/r0dr0/AndroidStudioProjects/AppMascota/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/Users/r0dr0/AndroidStudioProjects/AppMascota/app/src/main/res/layout/item_inicial.xml" value="0.3625" />
+        <entry key="..\:/Users/r0dr0/AndroidStudioProjects/AppMascota/app/src/main/res/layout/item_spin.xml" value="0.3625" />
+        <entry key="..\:/Users/r0dr0/AndroidStudioProjects/AppMascota/app/src/main/res/layout/spin_personalizado.xml" value="0.26403985507246375" />
+        <entry key="..\:/Users/r0dr0/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_spinner_item.xml" value="0.3625" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
