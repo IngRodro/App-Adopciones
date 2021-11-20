@@ -67,9 +67,6 @@ class PetRegisterActivity : AppCompatActivity() {
 
             var imageinByte: ByteArray = stream.toByteArray()
 
-            var encodeImage: String = Base64.encodeToString(imageinByte, Base64.DEFAULT)
-            val file: File = File(imgMascota.getContext().getCacheDir(), bitmap.toString() + ".png")
-
 
             var pet: Pets = Pets(etPetName.getText().toString(), etPetSex.getText().toString(), etPetAge.getText().toString().toInt(), imageinByte)
             SaveImage(pet)
