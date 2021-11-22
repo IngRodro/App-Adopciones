@@ -1,10 +1,7 @@
 package com.example.appmascota.API
-import com.example.appmascota.Modelos.Pets
-import com.example.appmascota.Modelos.UserResponse
-import com.example.appmascota.Modelos.Users
+import com.example.appmascota.Modelos.*
 import retrofit2.Response
 import retrofit2.http.*
-import java.io.File
 
 interface APIUser {
 
@@ -21,5 +18,8 @@ interface APIUser {
     suspend fun MostrarUser():Response <List<Users>>
 
     @POST("Mascota/upload")
-    suspend fun saveImage(@Body pets: Pets)
+    suspend fun saveImage(@Body petsUpload: PetsUpload)
+
+    @GET("Mascota/lista")
+    suspend fun getImages():Response<List<PetsResponse>>
 }

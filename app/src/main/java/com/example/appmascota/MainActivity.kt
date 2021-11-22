@@ -24,22 +24,15 @@ class MainActivity : AppCompatActivity() {
         btnRegister = findViewById(R.id.btnRegister)
         btnLogin = findViewById(R.id.btnLogin)
         btnRegister.setOnClickListener{
-            Mostrar()
             val siguienteActivity = Intent(this,RegisterActivity::class.java)
             startActivity(siguienteActivity)
         }
         etUser = findViewById(R.id.etUser)
         etPass= findViewById(R.id.etPass)
-
         btnLogin.setOnClickListener{
-
-
             val user: Users = Users(null,etUser.getText().toString(), etPass.getText().toString(), "","" , "","" );
-
             IniciarSesion(user)
-
         }
-
     }
 
     private fun getRetrofit(): Retrofit {
@@ -71,37 +64,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun Mostrar(){
-
-        CoroutineScope(Dispatchers.IO).launch {
-            val call = getRetrofit().create(APIUser::class.java).MostrarUser()
-            val respuesta = call.body()?: emptyList()
-
-            runOnUiThread{
-                if(call.isSuccessful){
-                   for(i in respuesta){
-                       println(i.iduser)
-                       println(i.username)
-                       println(i.password)
-                       println(i.names)
-                       println(i.lastnames)
-                       println(i.departamento)
-                       println(i.municipio)
-                   }
-
-                }else{
-
-                }
-            }
-        }
-    }
 
     private fun showNoAcces() {
         Toast.makeText(this,"LOGIN FAILED!!!",Toast.LENGTH_SHORT).show();
     }
 
     private fun showAcces() {
-        val siguienteActivity = Intent(this,PetRegisterActivity::class.java)
+        val siguienteActivity = Intent(this,InicioActivity::class.java)
         startActivity(siguienteActivity)
     }
 

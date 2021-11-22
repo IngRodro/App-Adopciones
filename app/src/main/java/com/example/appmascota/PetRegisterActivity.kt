@@ -1,36 +1,26 @@
 package com.example.appmascota
 
 import android.Manifest
-import android.R.attr
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ActionMenuView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import com.example.appmascota.Modelos.Pets
+import com.example.appmascota.Modelos.PetsUpload
 import java.io.File
-import android.R.attr.bitmap
 import android.graphics.Bitmap
-import android.net.Uri
-import android.provider.MediaStore
 import android.util.Base64
-import android.util.Base64.DEFAULT
 import com.example.appmascota.API.APIUser
-import com.example.appmascota.Modelos.Users
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.ByteArrayOutputStream
-import java.util.*
-import java.util.Base64.*
 import android.graphics.drawable.BitmapDrawable
 
 
@@ -71,7 +61,7 @@ class PetRegisterActivity : AppCompatActivity() {
             val file: File = File(imgMascota.getContext().getCacheDir(), bitmap.toString() + ".png")
 
 
-            var pet: Pets = Pets(etPetName.getText().toString(), etPetSex.getText().toString(), etPetAge.getText().toString().toInt(), imageinByte)
+            var pet: PetsUpload = PetsUpload(etPetName.getText().toString(), etPetSex.getText().toString(), etPetAge.getText().toString().toInt(), imageinByte)
             SaveImage(pet)
         }
     }
@@ -127,10 +117,10 @@ class PetRegisterActivity : AppCompatActivity() {
             .build()
     }
 
-    private fun SaveImage(pets: Pets){
+    private fun SaveImage(petsUpload: PetsUpload){
 
         CoroutineScope(Dispatchers.IO).launch {
-            getRetrofit().create(APIUser::class.java).saveImage(pets)
+            getRetrofit().create(APIUser::class.java).saveImage(petsUpload)
         }
     }
 
