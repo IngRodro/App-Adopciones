@@ -30,9 +30,14 @@ class AcceptActivity : AppCompatActivity() {
         tvSexo = findViewById(R.id.tvSexo)
         imgMascota = findViewById(R.id.imgMascotaSelect)
 
-            tvNombre.setText(petsResponse.nombre)
-            tvEdad.setText(petsResponse.edad.toString())
-            tvSexo.setText(petsResponse.sexo)
+            tvNombre.setText("Nombre: " + petsResponse.nombre)
+            if(petsResponse.edad > 1){
+
+                tvEdad.setText("Edad: " + petsResponse.edad.toString() + " Años")
+            }else{
+                tvEdad.setText("Edad: " + petsResponse.edad.toString() + " Año")
+            }
+            tvSexo.setText("Genero: " + petsResponse.sexo)
 
             val backToBytes: ByteArray = Base64.decode(petsResponse.fotoString,Base64.URL_SAFE)
             var bmp: Bitmap = BitmapFactory.decodeByteArray(backToBytes, 0, backToBytes.size );

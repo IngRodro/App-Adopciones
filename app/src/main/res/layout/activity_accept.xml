@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AcceptActivity">
+    tools:context=".AcceptActivity"
+    android:background="@drawable/background2">
 
     <TextView
         android:id="@+id/tvNombre"
-        android:layout_width="178dp"
-        android:layout_height="27dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
         android:text="TextView"
+        android:textSize="20dp"
+        android:fontFamily="@font/montserratbold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,10 +22,12 @@
 
     <TextView
         android:id="@+id/tvEdad"
-        android:layout_width="178dp"
-        android:layout_height="27dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
         android:text="TextView"
+        android:textSize="20dp"
+        android:fontFamily="@font/montserratbold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,26 +35,39 @@
 
     <TextView
         android:id="@+id/tvSexo"
-        android:layout_width="178dp"
-        android:layout_height="27dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
         android:text="TextView"
+        android:textSize="20dp"
+        android:fontFamily="@font/montserratbold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvEdad" />
 
-    <ImageView
-        android:id="@+id/imgMascotaSelect"
-        android:layout_width="242dp"
-        android:layout_height="241dp"
-        android:layout_marginTop="100dp"
-        android:scaleType="centerCrop"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvSexo"
-        app:srcCompat="@drawable/nodisponible" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSexo"
+        app:cardCornerRadius="20dp">
+
+        <ImageView
+            android:id="@+id/imgMascotaSelect"
+            android:layout_width="242dp"
+            android:layout_height="241dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvSexo"
+            app:srcCompat="@drawable/nodisponible" />
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/btnAceptar"
@@ -59,6 +77,7 @@
         android:text="Aceptar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgMascotaSelect" />
+        app:layout_constraintTop_toBottomOf="@+id/cvImg"
+        android:background="@drawable/button_rounded"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

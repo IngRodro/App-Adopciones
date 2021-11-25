@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import com.example.appmascota.API.APIUser
+import com.example.appmascota.Modelos.PetsResponse
 import com.example.appmascota.Modelos.Users
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
 
     private fun IniciarSesion(user: Users){
 

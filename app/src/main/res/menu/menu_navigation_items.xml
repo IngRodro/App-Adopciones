@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <item
+        android:id="@+id/nav_home"
+        android:title="Inicio" />
+    <item
+        android:id="@+id/nav_message"
+        android:title="Messages" />
+    <item
+        android:id="@+id/synch"
+        android:title="Synch" />
+    <item
+        android:id="@+id/trash"
+        android:title="Trash" />
+    <item
+        android:id="@+id/settings"
+        android:title="Settings" />
+
+
+    <item android:title="Mascotas">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:title="Ver mi Mascotas" />
+            <item
+                android:id="@+id/nav_petRegister"
+                android:title="Agregar Mascota" />
+        </menu>
+    </item>
+
+    <item android:title="Perfil">
+        <menu>
+            <item
+                android:id="@+id/nav_login"
+                android:title="Cerrar Sesion" />
+        </menu>
+    </item>
+</menu>
