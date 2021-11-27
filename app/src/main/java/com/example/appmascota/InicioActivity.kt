@@ -1,19 +1,17 @@
 package com.example.appmascota
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appmascota.API.APIUser
-import com.example.appmascota.Modelos.Pets
 import com.example.appmascota.Modelos.PetsResponse
-import com.example.appmascota.Modelos.PetsUpload
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.CoroutineScope
@@ -21,6 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 class InicioActivity : AppCompatActivity() {
 
@@ -32,6 +31,9 @@ class InicioActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inicio)
+
+        val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
+        val iduser = prefs.getInt("id", 0)
 
         val toolbar = findViewById<MaterialToolbar>(R.id.topAppBar)
         drawerLayout = findViewById(R.id.drawer_layout)
@@ -49,7 +51,7 @@ class InicioActivity : AppCompatActivity() {
                 //R.id.nav_message ->
                 R.id.synch -> Toast.makeText(
                     this,
-                    "Synch is Clicked",
+                    "iduser.toString()",
                     Toast.LENGTH_SHORT
                 ).show()
                 R.id.trash -> Toast.makeText(
@@ -72,10 +74,15 @@ class InicioActivity : AppCompatActivity() {
                     "Share is clicked",
                     Toast.LENGTH_SHORT
                 ).show()
-                R.id.nav_petRegister -> startActivity(registerPetActivity)
-                else -> return@OnNavigationItemSelectedListener true
+                R.id.nav_petRegister ->{
+                    val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
+                    val editor = prefs.edit()
+                    editor.putInt("id", iduser)
+                    editor.commit()
+                    startActivity(registerPetActivity)}
+
             }
-            true
+            false
         })
         CargarLista()
     }
@@ -101,9 +108,8 @@ class InicioActivity : AppCompatActivity() {
                         i.nombre,
                         i.sexo,
                         i.edad,
-                        null,
-                        i.fotoString
-                    )
+                        i.raza,
+                        i.fotoString)
                     PetsMutableListPublic.add(petsResponse)
                 }
 
@@ -113,7 +119,7 @@ class InicioActivity : AppCompatActivity() {
     }
 
     fun setUpRecyclerView(){
-        mRecyclerView = findViewById(R.id.rvSuperheroList) as RecyclerView
+        mRecyclerView = findViewById(R.id.rvPetsList) as RecyclerView
         mRecyclerView.setHasFixedSize(true)
         mRecyclerView.layoutManager = LinearLayoutManager(this)
         mAdapter.RecyclerAdapter(PetsMutableListPublic, this)

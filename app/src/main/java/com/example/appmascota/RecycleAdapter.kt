@@ -43,6 +43,7 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
         val textEdad = view.findViewById(R.id.txtEdad) as TextView
         val textSexo = view.findViewById(R.id.txtSexo) as TextView
         val imgPet = view.findViewById(R.id.ivPets) as ImageView
+        val textRaza:TextView = view.findViewById(R.id.txtPetsRaza)
         fun bind(petsResponse: PetsResponse, context: Context){
 
             textName.text = "Nombre: " + petsResponse.nombre
@@ -53,6 +54,7 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
                 textEdad.text = "Edad: " + petsResponse.edad.toString() + " Años"
             }
             textSexo.text = "Genero: " + petsResponse.sexo
+            textRaza.text = "Raza: " + petsResponse.raza
             val backToBytes: ByteArray = Base64.decode(petsResponse.fotoString,Base64.URL_SAFE)
             var bmp: Bitmap = BitmapFactory.decodeByteArray(backToBytes, 0, backToBytes.size );
             imgPet.setImageBitmap(bmp);

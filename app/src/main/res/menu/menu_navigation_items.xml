@@ -23,7 +23,7 @@
         <menu>
             <item
                 android:id="@+id/nav_share"
-                android:title="Ver mi Mascotas" />
+                android:title="Ver mis Mascotas" />
             <item
                 android:id="@+id/nav_petRegister"
                 android:title="Agregar Mascota" />
@@ -33,8 +33,12 @@
     <item android:title="Perfil">
         <menu>
             <item
+                android:id="@+id/nav_settings"
+                android:title="Ajustes de cuenta" />
+            <item
                 android:id="@+id/nav_login"
                 android:title="Cerrar Sesion" />
+
         </menu>
     </item>
 </menu>

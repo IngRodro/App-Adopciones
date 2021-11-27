@@ -1,5 +1,6 @@
 package com.example.appmascota
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +13,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import android.content.SharedPreferences
+
+
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var etUser: EditText
@@ -55,6 +60,12 @@ class MainActivity : AppCompatActivity() {
 
                     var estado = respuesta?.estado ?: ""
                     if(estado.equals("Acces")){
+                        if(respuesta != null){
+                            val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
+                            val editor = prefs.edit()
+                            editor.putInt("id", respuesta.id)
+                            editor.commit()
+                        }
                         showAcces()
                     }else{
                         showNoAcces()
