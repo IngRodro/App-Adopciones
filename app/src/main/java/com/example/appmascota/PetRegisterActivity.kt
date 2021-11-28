@@ -21,6 +21,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.ByteArrayOutputStream
 import android.graphics.drawable.BitmapDrawable
+import android.widget.Toast
 import com.example.appmascota.Modelos.Users
 
 
@@ -48,19 +49,41 @@ class PetRegisterActivity : AppCompatActivity() {
             cargarImagen()
         }
 
+        fun showAcces() {
+            val siguienteActivity = Intent(this,InicioActivity::class.java)
+            startActivity(siguienteActivity)
+        }
+
         val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
         val iduser = prefs.getInt("id", 0)
+
         btnSaveImage.setOnClickListener{
 
-            val bitmap = (imgMascota.getDrawable() as BitmapDrawable).getBitmap()
-            val stream = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream)
+            var petname = etPetName.text.toString()
+            var petage = etPetAge.text.toString()
+            var petraza = etPetRaza.text.toString()
+            var petsex = etPetSex.text.toString()
 
-            var imageinByte: ByteArray = stream.toByteArray()
+            if(petname.equals("") || petage.equals("") || petraza.equals("") || petsex.equals("")){
+                //correct
+                Toast.makeText(this,"Complete todos los campos para continuar", Toast.LENGTH_SHORT).show()
+            }else {
+                if (petname != null && petage != null && petraza != null && petsex != null){
+                    val bitmap = (imgMascota.getDrawable() as BitmapDrawable).getBitmap()
+                    val stream = ByteArrayOutputStream()
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream)
+
+                    var imageinByte: ByteArray = stream.toByteArray()
 
 
-            var pet = PetsRequest(etPetName.getText().toString(), etPetSex.getText().toString(), etPetAge.getText().toString().toInt(), etPetRaza.getText().toString(), imageinByte, Users(iduser, "", "", "", "", "", ""))
-            SaveImage(pet)
+                    var pet = PetsRequest(etPetName.getText().toString(), etPetSex.getText().toString(), etPetAge.getText().toString().toInt(), etPetRaza.getText().toString(), imageinByte, Users(iduser, "", "", "", "", "", ""))
+                    SaveImage(pet)
+
+                    showAcces()
+                }else{
+
+                }
+            }
         }
     }
 
