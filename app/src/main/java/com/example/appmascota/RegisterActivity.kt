@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import android.widget.ArrayAdapter
-import com.example.appmascota.API.APIUser
+import com.example.appmascota.API.API
 import com.example.appmascota.Modelos.Users
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.CoroutineScope
@@ -167,7 +167,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun SaveUser(user: Users){
 
         CoroutineScope(Dispatchers.IO).launch {
-            getRetrofit().create(APIUser::class.java).saveUser(user)
+            getRetrofit().create(API::class.java).saveUser(user)
 
         }
     }

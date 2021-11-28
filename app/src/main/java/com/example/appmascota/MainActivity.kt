@@ -5,17 +5,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
-import com.example.appmascota.API.APIUser
-import com.example.appmascota.Modelos.PetsResponse
+import com.example.appmascota.API.API
 import com.example.appmascota.Modelos.Users
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import android.content.SharedPreferences
-
-
+import java.lang.Exception
 
 
 class MainActivity : AppCompatActivity() {
@@ -37,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         etPass= findViewById(R.id.etPass)
         btnLogin.setOnClickListener{
             val user: Users = Users(null,etUser.getText().toString(), etPass.getText().toString(), "","" , "","" );
-            IniciarSesion(user)
+                IniciarSesion(user)
         }
     }
 
@@ -52,28 +49,33 @@ class MainActivity : AppCompatActivity() {
     private fun IniciarSesion(user: Users){
 
         CoroutineScope(Dispatchers.IO).launch {
-            val call = getRetrofit().create(APIUser::class.java).login(user)
-            val respuesta = call.body()
 
-            runOnUiThread{
-                if(call.isSuccessful){
+            try {
+                val call = getRetrofit().create(API::class.java).login(user)
+                val respuesta = call.body()
+
+            runOnUiThread {
+                if (call.isSuccessful) {
 
                     var estado = respuesta?.estado ?: ""
-                    if(estado.equals("Acces")){
-                        if(respuesta != null){
+                    if (estado.equals("Acces")) {
+                        if (respuesta != null) {
                             val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
                             val editor = prefs.edit()
                             editor.putInt("id", respuesta.id)
                             editor.commit()
                         }
                         showAcces()
-                    }else{
+                    } else {
                         showNoAcces()
                     }
-                }else{
+                } else {
 
                 }
             }
+        }catch (e: Exception){
+
+        }
         }
     }
 

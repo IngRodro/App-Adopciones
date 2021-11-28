@@ -3,7 +3,7 @@ import com.example.appmascota.Modelos.*
 import retrofit2.Response
 import retrofit2.http.*
 
-interface APIUser {
+interface API {
 
     //Inicio de Sesion
     @POST("User/inicio")
@@ -22,4 +22,7 @@ interface APIUser {
 
     @GET("Mascota/lista")
     suspend fun getImages():Response<List<PetsResponse>>
+
+    @POST("Adopcion/save")
+    suspend fun saveAdopcion(@Body adopcion: Adopcion)
 }

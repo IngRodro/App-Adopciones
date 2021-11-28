@@ -2,9 +2,11 @@ package com.example.appmascota
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.preference.PreferenceDataStore
 import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
@@ -17,13 +19,15 @@ import com.example.appmascota.Modelos.PetsResponse
 import kotlin.collections.ArrayList
 
 public lateinit var petsResponsePublic: PetsResponse
-
+private var iduser: Int = 0
 class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     var petsList: List<PetsResponse>  = ArrayList()
     lateinit var context: Context
-    fun RecyclerAdapter(pets : List<PetsResponse>, context: Context){
+
+    fun RecyclerAdapter(pets : List<PetsResponse>, context: Context, Iduser: Int){
         this.petsList = pets
         this.context = context
+        iduser = Iduser
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = petsList.get(position)
@@ -60,11 +64,14 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
             imgPet.setImageBitmap(bmp);
 
             itemView.setOnClickListener(View.OnClickListener {
+
                 petsResponsePublic = petsResponse
                 val siguienteActivity = Intent(context,AcceptActivity::class.java)
+                siguienteActivity.putExtra("iduser", iduser)
                 startActivity(context,siguienteActivity,null)
             })
         }
+
 
 
     }

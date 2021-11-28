@@ -12,10 +12,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import com.example.appmascota.Modelos.PetsUpload
-import java.io.File
 import android.graphics.Bitmap
-import android.util.Base64
-import com.example.appmascota.API.APIUser
+import com.example.appmascota.API.API
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -61,9 +59,6 @@ class PetRegisterActivity : AppCompatActivity() {
             bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream)
 
             var imageinByte: ByteArray = stream.toByteArray()
-
-            var encodeImage: String = Base64.encodeToString(imageinByte, Base64.DEFAULT)
-            val file: File = File(imgMascota.getContext().getCacheDir(), bitmap.toString() + ".png")
 
 
             var pet: PetsUpload = PetsUpload(etPetName.getText().toString(), etPetSex.getText().toString(), etPetAge.getText().toString().toInt(), etPetRaza.getText().toString(), imageinByte, iduser)
@@ -125,7 +120,7 @@ class PetRegisterActivity : AppCompatActivity() {
     private fun SaveImage(petsUpload: PetsUpload){
 
         CoroutineScope(Dispatchers.IO).launch {
-            getRetrofit().create(APIUser::class.java).saveImage(petsUpload)
+            getRetrofit().create(API::class.java).saveImage(petsUpload)
         }
     }
 

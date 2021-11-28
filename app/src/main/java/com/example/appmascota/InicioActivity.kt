@@ -10,7 +10,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appmascota.API.APIUser
+import com.example.appmascota.API.API
 import com.example.appmascota.Modelos.PetsResponse
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
@@ -24,6 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class InicioActivity : AppCompatActivity() {
 
 
+
     lateinit var mRecyclerView : RecyclerView
     lateinit var drawerLayout: DrawerLayout
     val mAdapter : RecyclerAdapter = RecyclerAdapter()
@@ -31,9 +32,9 @@ class InicioActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inicio)
-
         val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
         val iduser = prefs.getInt("id", 0)
+
 
         val toolbar = findViewById<MaterialToolbar>(R.id.topAppBar)
         drawerLayout = findViewById(R.id.drawer_layout)
@@ -84,7 +85,7 @@ class InicioActivity : AppCompatActivity() {
             }
             false
         })
-        CargarLista()
+        CargarLista(iduser)
     }
 
     private fun getRetrofit(): Retrofit {
@@ -94,11 +95,11 @@ class InicioActivity : AppCompatActivity() {
             .build()
     }
 
-    private fun CargarLista(){
+    private fun CargarLista(iduser: Int){
 
         PetsMutableListPublic.clear()
         CoroutineScope(Dispatchers.IO).launch {
-            val call = getRetrofit().create(APIUser::class.java).getImages()
+            val call = getRetrofit().create(API::class.java).getImages()
             val respuesta = call.body()?: emptyList()
 
             runOnUiThread{
@@ -113,16 +114,16 @@ class InicioActivity : AppCompatActivity() {
                     PetsMutableListPublic.add(petsResponse)
                 }
 
-                setUpRecyclerView()
+                setUpRecyclerView(iduser)
             }
         }
     }
 
-    fun setUpRecyclerView(){
+    fun setUpRecyclerView(iduser: Int){
         mRecyclerView = findViewById(R.id.rvPetsList) as RecyclerView
         mRecyclerView.setHasFixedSize(true)
         mRecyclerView.layoutManager = LinearLayoutManager(this)
-        mAdapter.RecyclerAdapter(PetsMutableListPublic, this)
+        mAdapter.RecyclerAdapter(PetsMutableListPublic, this, iduser)
         mRecyclerView.adapter = mAdapter
     }
 

@@ -70,7 +70,7 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/btnAceptar"
+        android:id="@+id/btnAceptarAdopcion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
