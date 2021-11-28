@@ -18,7 +18,7 @@ interface API {
     suspend fun MostrarUser():Response <List<Users>>
 
     @POST("Mascota/upload")
-    suspend fun saveImage(@Body petsUpload: PetsUpload)
+    suspend fun saveImage(@Body petsRequest: PetsRequest)
 
     @GET("Mascota/lista")
     suspend fun getImages():Response<List<PetsResponse>>

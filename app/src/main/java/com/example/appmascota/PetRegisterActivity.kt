@@ -11,7 +11,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import com.example.appmascota.Modelos.PetsUpload
+import com.example.appmascota.Modelos.PetsRequest
 import android.graphics.Bitmap
 import com.example.appmascota.API.API
 import kotlinx.coroutines.CoroutineScope
@@ -21,9 +21,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.ByteArrayOutputStream
 import android.graphics.drawable.BitmapDrawable
-
-
-
+import com.example.appmascota.Modelos.Users
 
 
 class PetRegisterActivity : AppCompatActivity() {
@@ -61,7 +59,7 @@ class PetRegisterActivity : AppCompatActivity() {
             var imageinByte: ByteArray = stream.toByteArray()
 
 
-            var pet: PetsUpload = PetsUpload(etPetName.getText().toString(), etPetSex.getText().toString(), etPetAge.getText().toString().toInt(), etPetRaza.getText().toString(), imageinByte, iduser)
+            var pet = PetsRequest(etPetName.getText().toString(), etPetSex.getText().toString(), etPetAge.getText().toString().toInt(), etPetRaza.getText().toString(), imageinByte, Users(iduser, "", "", "", "", "", ""))
             SaveImage(pet)
         }
     }
@@ -117,10 +115,10 @@ class PetRegisterActivity : AppCompatActivity() {
             .build()
     }
 
-    private fun SaveImage(petsUpload: PetsUpload){
+    private fun SaveImage(petsRequest: PetsRequest){
 
         CoroutineScope(Dispatchers.IO).launch {
-            getRetrofit().create(API::class.java).saveImage(petsUpload)
+            getRetrofit().create(API::class.java).saveImage(petsRequest)
         }
     }
 
