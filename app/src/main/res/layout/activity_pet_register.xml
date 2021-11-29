@@ -37,18 +37,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.421"
         app:layout_constraintStart_toEndOf="@+id/btnSeleccionar"
-        app:layout_constraintTop_toBottomOf="@+id/imgMascota" />
+        app:layout_constraintTop_toBottomOf="@+id/imgMascota"
+        />
 
     <ImageView
         android:id="@+id/imgMascota"
         android:layout_width="242dp"
         android:layout_height="241dp"
+        android:layout_marginTop="44dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/nodisponible"
-        tools:layout_editor_absoluteY="313dp" />
+        app:layout_constraintTop_toBottomOf="@+id/spPetSex"
+        app:srcCompat="@drawable/nodisponible" />
 
     <Button
         android:id="@+id/btnSeleccionar"
@@ -105,12 +107,14 @@
 
     <Spinner
         android:id="@+id/spPetSex"
-        android:layout_width="372dp"
-        android:layout_height="35dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
         android:layout_marginTop="22dp"
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPetRaza" />
+        app:layout_constraintTop_toBottomOf="@+id/etPetRaza"
+        tools:listitem="@layout/item_spin"
+        android:background="@drawable/spinner_style"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
