@@ -52,21 +52,6 @@ class MisAdopcionesActivity : AppCompatActivity() {
             when (id) {
                 //R.id.nav_home -> startActivity(inicioActivity)
                 //R.id.nav_message ->
-                R.id.synch -> Toast.makeText(
-                    this,
-                    "iduser.toString()",
-                    Toast.LENGTH_SHORT
-                ).show()
-                R.id.trash -> Toast.makeText(
-                    this,
-                    "Trash is Clicked",
-                    Toast.LENGTH_SHORT
-                ).show()
-                R.id.settings -> Toast.makeText(
-                    this,
-                    "Settings is Clicked",
-                    Toast.LENGTH_SHORT
-                ).show()
                 R.id.nav_login -> Toast.makeText(
                     this,
                     "Login is Clicked",

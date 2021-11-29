@@ -5,19 +5,6 @@
     <item
         android:id="@+id/nav_home"
         android:title="Inicio" />
-    <item
-        android:id="@+id/nav_message"
-        android:title="Messages" />
-    <item
-        android:id="@+id/synch"
-        android:title="Synch" />
-    <item
-        android:id="@+id/trash"
-        android:title="Trash" />
-    <item
-        android:id="@+id/settings"
-        android:title="Settings" />
-
 
     <item android:title="Mascotas">
         <menu>
