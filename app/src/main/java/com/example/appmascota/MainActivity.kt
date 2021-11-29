@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         etUser = findViewById(R.id.etUser)
         etPass= findViewById(R.id.etPass)
         btnLogin.setOnClickListener{
-            val user: Users = Users(null,etUser.getText().toString(), etPass.getText().toString(), "","" , "","" );
+            val user: Users = Users(null,etUser.getText().toString(), etPass.getText().toString(), "","" , "","","");
                 IniciarSesion(user)
         }
     }

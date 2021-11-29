@@ -15,5 +15,6 @@
     <string name="etPetNombre">Nombre de Mascota</string>
     <string name="etPetEdad">Edad de Mascota</string>
     <string name="etPetSexoMascota">Sexo de Mascota</string>
+    <string name="etnPhone">Telefono</string>
     <string name="tvAppName_Text">PetsApp</string>
 </resources>

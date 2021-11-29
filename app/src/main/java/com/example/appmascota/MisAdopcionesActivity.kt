@@ -86,7 +86,7 @@ class MisAdopcionesActivity : AppCompatActivity() {
 
         Adopciones.clear()
         CoroutineScope(Dispatchers.IO).launch {
-            val call = getRetrofit().create(API::class.java).listaAdopciones(Users(iduser, "", "", "", "", "", ""))
+            val call = getRetrofit().create(API::class.java).listaAdopciones(Users(iduser, "", "", "", "", "", "",""))
             val respuesta = call.body()?: emptyList()
 
             runOnUiThread{

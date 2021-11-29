@@ -60,7 +60,7 @@ class AcceptActivity : AppCompatActivity() {
 
         btnAdopcion.setOnClickListener {
             if(iduser != null){
-                var adopcion = Adopcion(null, petsResponse, Users(iduser, "", "", "", "", "", ""), "Peticion Enviada")
+                var adopcion = Adopcion(null, petsResponse, Users(iduser, "", "", "", "", "", "",""), "Peticion Enviada")
                 SaveAdopcion(adopcion)
             }
         }

@@ -24,6 +24,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var etUser: EditText
     private lateinit var etPass: TextInputLayout
     private lateinit var etPassConfirmed: TextInputLayout
+    private lateinit var etnPhone: EditText
     private lateinit var btnNewAccount: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +37,7 @@ class RegisterActivity : AppCompatActivity() {
         etUser = findViewById(R.id.etUser)
         etPass = findViewById(R.id.etPass)
         etPassConfirmed = findViewById(R.id.etPassConfirmed)
+        etnPhone = findViewById(R.id.etnPhone)
         btnNewAccount = findViewById(R.id.btnNewAccount)
 
 
@@ -137,10 +139,11 @@ class RegisterActivity : AppCompatActivity() {
             var Departamento = spDepartamento.selectedItem.toString()
             var Municipio = spMunicipio.selectedItem.toString()
             var Usuario = etUser.text.toString()
+            var Telefono = etnPhone.text.toString()
 
 
             if(etUser.getText().toString().equals("") || password.equals("") || paswordConfirmed.equals("") || Departamento.equals("Seleccione un Departamento")
-                || Municipio.equals("Seleccione un Municipio") || Nombres.equals("") || Apellidos.equals("") || Usuario.equals("")
+                || Municipio.equals("Seleccione un Municipio") || Nombres.equals("") || Apellidos.equals("") || Usuario.equals("") || Telefono.equals("")
             ){
                 //correct
                 Toast.makeText(this,"Complete todos los campos para continuar",Toast.LENGTH_SHORT).show()
@@ -148,7 +151,7 @@ class RegisterActivity : AppCompatActivity() {
                 if (!password.equals(paswordConfirmed)){
                     Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
                 }else{
-                    val user = Users(null,Usuario, password , Nombres, Apellidos,Departamento,Municipio);
+                    val user = Users(null,Usuario, password , Nombres, Apellidos,Departamento,Municipio,Telefono);
 
                     SaveUser(user)
                     Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()

@@ -77,7 +77,7 @@ class PetRegisterActivity : AppCompatActivity() {
                     var imageinByte: ByteArray = stream.toByteArray()
 
 
-                    var pet = PetsRequest(etPetName.getText().toString(), spPetSex.selectedItem.toString(), etPetAge.getText().toString().toInt(), etPetRaza.getText().toString(), imageinByte, Users(iduser, "", "", "", "", "", ""))
+                    var pet = PetsRequest(etPetName.getText().toString(), spPetSex.selectedItem.toString(), etPetAge.getText().toString().toInt(), etPetRaza.getText().toString(), imageinByte, Users(iduser, "", "", "", "", "", "",""))
                     SaveImage(pet)
 
                     showAcces()
