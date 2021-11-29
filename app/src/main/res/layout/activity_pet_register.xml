@@ -115,6 +115,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPetRaza"
-        tools:listitem="@layout/item_spin"
-        android:background="@drawable/spinner_style"/>
+        tools:listitem="@layout/item_spin"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
