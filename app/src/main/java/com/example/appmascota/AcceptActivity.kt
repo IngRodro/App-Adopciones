@@ -56,9 +56,11 @@ class AcceptActivity : AppCompatActivity() {
             var bmp: Bitmap = BitmapFactory.decodeByteArray(backToBytes, 0, backToBytes.size )
             imgMascota.setImageBitmap(bmp)
 
+
+
         btnAdopcion.setOnClickListener {
             if(iduser != null){
-                var adopcion = Adopcion(null, petsResponse.idmascota, iduser, "Peticion Enviada")
+                var adopcion = Adopcion(null, petsResponse, Users(iduser, "", "", "", "", "", ""), "Peticion Enviada")
                 SaveAdopcion(adopcion)
             }
         }
@@ -67,7 +69,7 @@ class AcceptActivity : AppCompatActivity() {
 
     private fun getRetrofit(): Retrofit {
         return  Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8080/APIMascotas/")
+            .baseUrl("http://192.168.1.7:8080/APIMascotas/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

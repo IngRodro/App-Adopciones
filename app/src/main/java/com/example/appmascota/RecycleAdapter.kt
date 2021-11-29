@@ -2,11 +2,8 @@ package com.example.appmascota
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.os.Bundle
-import android.preference.PreferenceDataStore
 import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
@@ -40,6 +37,7 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     override fun getItemCount(): Int {
         return petsList.size
     }
+
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
 
@@ -71,8 +69,6 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
                 startActivity(context,siguienteActivity,null)
             })
         }
-
-
 
     }
 }

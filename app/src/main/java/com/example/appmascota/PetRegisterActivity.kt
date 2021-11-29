@@ -141,7 +141,7 @@ class PetRegisterActivity : AppCompatActivity() {
     private fun SaveImage(petsRequest: PetsRequest){
 
         CoroutineScope(Dispatchers.IO).launch {
-            getRetrofit().create(API::class.java).saveImage(petsRequest)
+            getRetrofit().create(API::class.java).saveMascota(petsRequest)
         }
     }
 

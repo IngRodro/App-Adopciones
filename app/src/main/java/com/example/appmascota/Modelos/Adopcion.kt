@@ -1,4 +1,4 @@
 package com.example.appmascota.Modelos
 
-data class Adopcion(var idAdopcion: Int?, var idMascota:Int, var idUsuarioAdopta:Int, var estado:String) {
+data class Adopcion(var idadopcion: Int?, var idMascota: PetsResponse, var idUsuarioAdopta:Users, var estado:String) {
 }

@@ -14,15 +14,15 @@ interface API {
     @POST("User/save")
     suspend fun saveUser(@Body users: Users)
 
-    @GET("User")
-    suspend fun MostrarUser():Response <List<Users>>
-
     @POST("Mascota/upload")
-    suspend fun saveImage(@Body petsRequest: PetsRequest)
+    suspend fun saveMascota(@Body petsRequest: PetsRequest)
 
     @GET("Mascota/lista")
-    suspend fun getImages():Response<List<PetsResponse>>
+    suspend fun listaMascotas():Response<List<PetsResponse>>
 
     @POST("Adopcion/save")
     suspend fun saveAdopcion(@Body adopcion: Adopcion)
+
+    @POST("Adopcion/misAdopciones")
+    suspend fun listaAdopciones(@Body users: Users):Response<List<Adopcion>>
 }

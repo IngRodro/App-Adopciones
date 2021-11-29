@@ -11,7 +11,9 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appmascota.API.API
+import com.example.appmascota.Modelos.Adopcion
 import com.example.appmascota.Modelos.PetsResponse
+import com.example.appmascota.Modelos.Users
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.CoroutineScope
@@ -20,21 +22,21 @@ import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
-class InicioActivity : AppCompatActivity() {
-
-
+class MisAdopcionesActivity : AppCompatActivity() {
 
     lateinit var mRecyclerView : RecyclerView
     lateinit var drawerLayout: DrawerLayout
-    val mAdapter : RecyclerAdapter = RecyclerAdapter()
-    var PetsMutableList:MutableList<PetsResponse> = mutableListOf()
+    val mAdapter : RecyclerAdapterAdopciones = RecyclerAdapterAdopciones()
+    var Adopciones:MutableList<Adopcion> = mutableListOf()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_inicio)
+        setContentView(R.layout.activity_mis_adopciones)
+
         val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
         val iduser = prefs.getInt("id", 0)
 
+        CargarLista(iduser)
 
         val toolbar = findViewById<MaterialToolbar>(R.id.topAppBar)
         drawerLayout = findViewById(R.id.drawer_layout)
@@ -42,9 +44,8 @@ class InicioActivity : AppCompatActivity() {
         toolbar.setNavigationOnClickListener { drawerLayout.openDrawer(GravityCompat.START) }
         navigationView.setItemTextColor(ColorStateList.valueOf(getResources().getColor(R.color.white)))
         navigationView.setBackgroundColor(getResources().getColor(R.color.purple))
-        val inicioActivity = Intent(this,InicioActivity::class.java)
+        val inicioActivity = Intent(this, InicioActivity::class.java)
         val registerPetActivity = Intent(this, PetRegisterActivity::class.java)
-        val adopcionesActivity = Intent(this, MisAdopcionesActivity::class.java)
         navigationView.setNavigationItemSelectedListener(NavigationView.OnNavigationItemSelectedListener { item ->
             val id = item.itemId
             drawerLayout.closeDrawer(GravityCompat.START)
@@ -71,24 +72,22 @@ class InicioActivity : AppCompatActivity() {
                     "Login is Clicked",
                     Toast.LENGTH_SHORT
                 ).show()
-                R.id.nav_adopciones -> {
+                R.id.nav_share -> Toast.makeText(
+                    this,
+                    "Share is clicked",
+                    Toast.LENGTH_SHORT
+                ).show()
+                R.id.nav_petRegister -> {
                     val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
                     val editor = prefs.edit()
                     editor.putInt("id", iduser)
                     editor.commit()
-                    startActivity(adopcionesActivity)
+                    startActivity(registerPetActivity)
                 }
-                R.id.nav_petRegister ->{
-                    val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
-                    val editor = prefs.edit()
-                    editor.putInt("id", iduser)
-                    editor.commit()
-                    startActivity(registerPetActivity)}
 
             }
             false
         })
-        CargarLista(iduser)
     }
 
     private fun getRetrofit(): Retrofit {
@@ -100,35 +99,31 @@ class InicioActivity : AppCompatActivity() {
 
     private fun CargarLista(iduser: Int){
 
-        PetsMutableList.clear()
+        Adopciones.clear()
         CoroutineScope(Dispatchers.IO).launch {
-            val call = getRetrofit().create(API::class.java).listaMascotas()
+            val call = getRetrofit().create(API::class.java).listaAdopciones(Users(iduser, "", "", "", "", "", ""))
             val respuesta = call.body()?: emptyList()
 
             runOnUiThread{
                 for(i in respuesta)  {
-                    var petsResponse: PetsResponse = PetsResponse(
-                        i.idmascota,
-                        i.nombre,
-                        i.sexo,
-                        i.edad,
-                        i.raza,
-                        i.fotoString,
-                        i.iduser)
-                    PetsMutableList.add(petsResponse)
+                    var adopcion: Adopcion = Adopcion(
+                        i.idadopcion,
+                        i.idMascota,
+                        i.idUsuarioAdopta,
+                        i.estado)
+                    Adopciones.add(adopcion)
                 }
 
-                setUpRecyclerView(iduser)
+                setUpRecyclerView()
             }
         }
     }
 
-    fun setUpRecyclerView(iduser: Int){
-        mRecyclerView = findViewById(R.id.rvPetsList) as RecyclerView
+    fun setUpRecyclerView(){
+        mRecyclerView = findViewById(R.id.rvPetsAdoptList) as RecyclerView
         mRecyclerView.setHasFixedSize(true)
         mRecyclerView.layoutManager = LinearLayoutManager(this)
-        mAdapter.RecyclerAdapter(PetsMutableList, this, iduser)
+        mAdapter.RecyclerAdapter(Adopciones, this)
         mRecyclerView.adapter = mAdapter
     }
-
 }
