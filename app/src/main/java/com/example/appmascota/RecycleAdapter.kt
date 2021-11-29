@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appmascota.Modelos.PetsResponse
@@ -63,12 +64,25 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
             itemView.setOnClickListener(View.OnClickListener {
 
-                petsResponsePublic = petsResponse
-                val siguienteActivity = Intent(context,AcceptActivity::class.java)
-                siguienteActivity.putExtra("iduser", iduser)
-                startActivity(context,siguienteActivity,null)
+                if(iduser != petsResponse.iduser.iduser){
+                    petsResponsePublic = petsResponse
+                    val siguienteActivity = Intent(context,AcceptActivity::class.java)
+                    siguienteActivity.putExtra("iduser", iduser)
+                    startActivity(context,siguienteActivity,null)
+                }else{
+                    Mensaje(context)
+                }
             })
         }
 
+
+
     }
+}
+private fun Mensaje(context: Context) {
+    Toast.makeText(
+        context,
+        "No se puede seleccionar esa Mascota",
+        Toast.LENGTH_SHORT
+    ).show()
 }
