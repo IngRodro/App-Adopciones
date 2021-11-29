@@ -8,9 +8,6 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
 import com.example.appmascota.Modelos.PetsRequest
 import android.graphics.Bitmap
 import com.example.appmascota.API.API
@@ -21,7 +18,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.ByteArrayOutputStream
 import android.graphics.drawable.BitmapDrawable
-import android.widget.Toast
+import android.widget.*
 import com.example.appmascota.Modelos.Users
 
 
@@ -32,7 +29,7 @@ class PetRegisterActivity : AppCompatActivity() {
     private lateinit var imgMascota: ImageView
     private lateinit var etPetName :EditText
     private lateinit var etPetAge :EditText
-    private lateinit var etPetSex :EditText
+    private lateinit var spPetSex :Spinner
     private lateinit var etPetRaza :EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,11 +40,15 @@ class PetRegisterActivity : AppCompatActivity() {
         imgMascota = findViewById(R.id.imgMascota)
         etPetName = findViewById(R.id.etPetName)
         etPetAge = findViewById(R.id.etPetAge)
-        etPetSex = findViewById(R.id.etPetSex)
+        spPetSex = findViewById(R.id.spPetSex)
         etPetRaza = findViewById(R.id.etPetRaza)
         btnSeleccionar.setOnClickListener{
             cargarImagen()
         }
+
+        val opciones = arrayOf("Selecciona un sexo","Macho","Hembra")
+        val adaptador = ArrayAdapter(this,android.R.layout.simple_spinner_item,opciones)
+        spPetSex.adapter = adaptador
 
         fun showAcces() {
             val siguienteActivity = Intent(this,InicioActivity::class.java)
@@ -62,7 +63,7 @@ class PetRegisterActivity : AppCompatActivity() {
             var petname = etPetName.text.toString()
             var petage = etPetAge.text.toString()
             var petraza = etPetRaza.text.toString()
-            var petsex = etPetSex.text.toString()
+            var petsex = spPetSex.selectedItem.toString()
 
             if(petname.equals("") || petage.equals("") || petraza.equals("") || petsex.equals("")){
                 //correct
@@ -76,7 +77,7 @@ class PetRegisterActivity : AppCompatActivity() {
                     var imageinByte: ByteArray = stream.toByteArray()
 
 
-                    var pet = PetsRequest(etPetName.getText().toString(), etPetSex.getText().toString(), etPetAge.getText().toString().toInt(), etPetRaza.getText().toString(), imageinByte, Users(iduser, "", "", "", "", "", ""))
+                    var pet = PetsRequest(etPetName.getText().toString(), spPetSex.selectedItem.toString(), etPetAge.getText().toString().toInt(), etPetRaza.getText().toString(), imageinByte, Users(iduser, "", "", "", "", "", ""))
                     SaveImage(pet)
 
                     showAcces()
