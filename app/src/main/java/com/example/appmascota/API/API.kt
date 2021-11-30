@@ -28,4 +28,11 @@ interface API {
 
     @POST("Mascota/misMascotas")
     suspend fun listamisMascotas(@Body users: Users):Response<List<PetsResponse>>
+
+    @DELETE("Mascota/eliminar/{id}")
+    suspend fun eliminarMascota(@Path(value = "id") id :Int):Response<Boolean>
+
+    @PUT("Adopcion/adopcionfinalizada/{id}")
+    suspend fun finalizarAdopcion(@Path(value = "id")id :Int?):Response<Boolean>
+
 }

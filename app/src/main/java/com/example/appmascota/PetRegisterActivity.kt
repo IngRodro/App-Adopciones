@@ -54,6 +54,8 @@ class PetRegisterActivity : AppCompatActivity() {
         val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
         val iduser = prefs.getInt("id", 0)
 
+
+        this
         btnSaveImage.setOnClickListener{
 
             var petname = etPetName.text.toString()
@@ -130,16 +132,20 @@ class PetRegisterActivity : AppCompatActivity() {
 
     private fun getRetrofit(): Retrofit {
         return  Retrofit.Builder()
-            .baseUrl("https://app-mascotas-programacion-iv.herokuapp.com/APIMascotas/")
+            .baseUrl("http://10.0.2.2:8080/APIMascotas/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
     private fun SaveImage(petsRequest: PetsRequest){
 
-        CoroutineScope(Dispatchers.IO).launch {
-            getRetrofit().create(API::class.java).saveMascota(petsRequest)
-            showAcces()
+        try {
+            CoroutineScope(Dispatchers.IO).launch {
+                getRetrofit().create(API::class.java).saveMascota(petsRequest)
+                showAcces()
+            }
+        }catch (e: Exception){
+
         }
     }
 

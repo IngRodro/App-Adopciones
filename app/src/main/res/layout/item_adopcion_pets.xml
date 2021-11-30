@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="20sp"
+            android:textSize="18dp"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/cva"
             android:layout_toEndOf="@+id/cva"
@@ -43,7 +43,7 @@
             android:id="@+id/txtEdada"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="18dp"
             android:layout_below="@+id/txtPetsNamea"
             android:layout_toRightOf="@+id/cva"
             android:layout_toEndOf="@+id/cva"
@@ -52,7 +52,7 @@
             android:id="@+id/txtPetsRazaa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="18dp"
             android:layout_below="@+id/txtEdada"
             android:layout_toRightOf="@+id/cva"
             android:layout_toEndOf="@+id/cva"
@@ -61,10 +61,20 @@
             android:id="@+id/txtSexoa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="18dp"
             android:textStyle="italic"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            tools:text = ""/>
+            tools:text = "" />
+        <TextView
+            android:id="@+id/txtidAdopcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:layout_below="@+id/txtPetsRazaa"
+            android:layout_toRightOf="@+id/cva"
+            android:layout_toEndOf="@+id/cva"
+            tools:text= "" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

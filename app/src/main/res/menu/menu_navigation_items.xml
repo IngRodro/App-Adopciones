@@ -16,7 +16,7 @@
                 android:title="Agregar Mascota" />
             <item
                 android:id="@+id/nav_adopciones"
-                android:title="Ve mis Adopciones"/>
+                android:title="Ver mis Adopciones"/>
 
         </menu>
     </item>

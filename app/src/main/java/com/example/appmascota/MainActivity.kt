@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun getRetrofit(): Retrofit {
         return  Retrofit.Builder()
-            .baseUrl("https://app-mascotas-programacion-iv.herokuapp.com/APIMascotas/")
+            .baseUrl("http://10.0.2.2:8080/APIMascotas/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
@@ -51,9 +51,9 @@ class MainActivity : AppCompatActivity() {
 
         btnLogin.isEnabled = false
         btnRegister.isEnabled = false
+        try {
         CoroutineScope(Dispatchers.IO).launch {
 
-            try {
                 val call = getRetrofit().create(API::class.java).login(user)
                 val respuesta = call.body()
 
@@ -73,13 +73,15 @@ class MainActivity : AppCompatActivity() {
                         showNoAcces()
                     }
                 } else {
-
+                    btnLogin.isEnabled = true
+                    btnRegister.isEnabled = true
                 }
             }
+
+        }
         }catch (e: Exception){
             btnLogin.isEnabled = true
             btnRegister.isEnabled = true
-        }
         }
     }
 
@@ -93,6 +95,8 @@ class MainActivity : AppCompatActivity() {
     private fun showAcces() {
         val siguienteActivity = Intent(this,InicioActivity::class.java)
         startActivity(siguienteActivity)
+        btnLogin.isEnabled = true
+        btnRegister.isEnabled = true
     }
 
 }

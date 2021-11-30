@@ -2,6 +2,7 @@ package com.example.appmascota
 
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.getIntent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Base64
@@ -12,22 +13,36 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.example.appmascota.API.API
+import com.example.appmascota.Modelos.PetsRequest
 import com.example.appmascota.Modelos.PetsResponse
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import kotlin.collections.ArrayList
+import androidx.core.content.ContextCompat.startActivity
+
+
+
 
 public lateinit var petsResponsePublic: PetsResponse
 private var iduser: Int = 0
+private var booleanp: Boolean = false
 class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     var petsList: List<PetsResponse> = ArrayList()
     lateinit var context: Context
 
-    fun RecyclerAdapter(pets: List<PetsResponse>, context: Context, Iduser: Int) {
+    fun RecyclerAdapter(pets: List<PetsResponse>, context: Context, Iduser: Int, boolean: Boolean) {
         this.petsList = pets
         this.context = context
         iduser = Iduser
+        booleanp = boolean
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -54,6 +69,8 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
         val textRaza: TextView = view.findViewById(R.id.txtPetsRaza)
         val textEstado: TextView = view.findViewById(R.id.txtPetsState)
         val btnEliminar: Button = view.findViewById(R.id.btnEliminar)
+        val btnEntregar: Button = view.findViewById(R.id.btnConfirmarEntrega)
+        val textidAdopcion: TextView = view.findViewById(R.id.txtPetsidAdopcion)
         fun bind(petsResponse: PetsResponse, context: Context) {
 
             textName.text = "Nombre: " + petsResponse.nombre
@@ -68,8 +85,21 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
             val backToBytes: ByteArray = Base64.decode(petsResponse.fotoString, Base64.URL_SAFE)
             var bmp: Bitmap = BitmapFactory.decodeByteArray(backToBytes, 0, backToBytes.size)
             imgPet.setImageBitmap(bmp)
+            if(booleanp == true){
+                textSexo.text = ""
+                if(petsResponse.estado == null){
+                    textEstado.text = ""
 
-            if(petsResponse.estado == null){
+                }else{
+                    textEstado.text = "Estado: " + petsResponse.estado
+                    btnEliminar.isVisible = false
+                    btnEntregar.isVisible = true
+
+                    if(petsResponse.idAdopcion != null){
+                        textidAdopcion.text = "Id Adopcion: " + petsResponse.idAdopcion.toString()
+                    }
+                }
+            }else{
                 textEstado.text = ""
                 btnEliminar.isVisible = false
                 itemView.setOnClickListener(View.OnClickListener {
@@ -80,12 +110,51 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
                     startActivity(context, siguienteActivity, null)
 
                 })
-            }else{
-                textEstado.text = "Estado: Esperando Adopcion"
             }
 
             btnEliminar.setOnClickListener {
-                showNoAcces(context)
+
+                    try {
+
+                        CoroutineScope(Dispatchers.IO).launch {
+                           var call = getRetrofit().create(API::class.java).eliminarMascota(petsResponse.idmascota)
+
+                            if(call.body() == true){
+
+                                    val i = Intent(context, MisMascotasActivity::class.java)
+                                    context.startActivity(i)
+
+                            }else{
+
+                            }
+
+                        }
+                    }catch (e: Exception){
+
+                    }
+
+            }
+
+            btnEntregar.setOnClickListener {
+                try {
+                    btnEntregar.isEnabled = false
+                    CoroutineScope(Dispatchers.IO).launch {
+                        var call = getRetrofit().create(API::class.java).finalizarAdopcion(petsResponse.idAdopcion)
+                        println(call.body())
+                        if(call.body() == true){
+
+                            val i = Intent(context, MisMascotasActivity::class.java)
+                            context.startActivity(i)
+
+                        }else{
+
+                        }
+
+                    }
+                }catch (e: Exception){
+                    println(e)
+                    btnEntregar.isEnabled = true
+                }
             }
 
         }
@@ -93,6 +162,11 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     }
 }
-private fun showNoAcces(context: Context) {
-    Toast.makeText(context,"Hola!!!",Toast.LENGTH_SHORT).show()
+
+private  fun getRetrofit(): Retrofit {
+    return  Retrofit.Builder()
+        .baseUrl("http://10.0.2.2:8080/APIMascotas/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
 }
+

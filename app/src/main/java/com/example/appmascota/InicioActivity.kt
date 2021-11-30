@@ -80,7 +80,7 @@ class InicioActivity : AppCompatActivity() {
 
     private fun getRetrofit(): Retrofit {
         return  Retrofit.Builder()
-            .baseUrl("https://app-mascotas-programacion-iv.herokuapp.com/APIMascotas/")
+            .baseUrl("http://10.0.2.2:8080/APIMascotas/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
@@ -102,7 +102,8 @@ class InicioActivity : AppCompatActivity() {
                         i.raza,
                         i.fotoString,
                         i.iduser,
-                        i.estado)
+                        i.estado,
+                         i.idAdopcion)
                     PetsMutableList.add(petsResponse)
                 }
 
@@ -115,7 +116,7 @@ class InicioActivity : AppCompatActivity() {
         mRecyclerView = findViewById(R.id.rvPetsList) as RecyclerView
         mRecyclerView.setHasFixedSize(true)
         mRecyclerView.layoutManager = LinearLayoutManager(this)
-        mAdapter.RecyclerAdapter(PetsMutableList, this, iduser)
+        mAdapter.RecyclerAdapter(PetsMutableList, this, iduser, false)
         mRecyclerView.adapter = mAdapter
     }
 
