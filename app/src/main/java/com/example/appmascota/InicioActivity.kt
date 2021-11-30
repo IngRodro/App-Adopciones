@@ -5,13 +5,13 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appmascota.API.API
 import com.example.appmascota.Modelos.PetsResponse
+import com.example.appmascota.Modelos.Users
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.CoroutineScope
@@ -45,17 +45,19 @@ class InicioActivity : AppCompatActivity() {
         val inicioActivity = Intent(this,InicioActivity::class.java)
         val registerPetActivity = Intent(this, PetRegisterActivity::class.java)
         val adopcionesActivity = Intent(this, MisAdopcionesActivity::class.java)
+        val mismascotasActivity = Intent(this, MisMascotasActivity::class.java)
         navigationView.setNavigationItemSelectedListener(NavigationView.OnNavigationItemSelectedListener { item ->
             val id = item.itemId
             drawerLayout.closeDrawer(GravityCompat.START)
             when (id) {
                 //R.id.nav_home -> startActivity(inicioActivity)
                 //R.id.nav_message ->
-                R.id.nav_login -> Toast.makeText(
-                    this,
-                    "Login is Clicked",
-                    Toast.LENGTH_SHORT
-                ).show()
+                R.id.nav_mypets -> {
+                    val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
+                    val editor = prefs.edit()
+                    editor.putInt("id", iduser)
+                    editor.commit()
+                    startActivity(mismascotasActivity)}
                 R.id.nav_adopciones -> {
                     val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
                     val editor = prefs.edit()
@@ -87,7 +89,7 @@ class InicioActivity : AppCompatActivity() {
 
         PetsMutableList.clear()
         CoroutineScope(Dispatchers.IO).launch {
-            val call = getRetrofit().create(API::class.java).listaMascotas()
+            val call = getRetrofit().create(API::class.java).listaMascotas(Users(iduser, "","","","","","",""))
             val respuesta = call.body()?: emptyList()
 
             runOnUiThread{
@@ -99,7 +101,8 @@ class InicioActivity : AppCompatActivity() {
                         i.edad,
                         i.raza,
                         i.fotoString,
-                        i.iduser)
+                        i.iduser,
+                        i.estado)
                     PetsMutableList.add(petsResponse)
                 }
 

@@ -9,7 +9,7 @@
     <item android:title="Mascotas">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_mypets"
                 android:title="Ver mis Mascotas" />
             <item
                 android:id="@+id/nav_petRegister"

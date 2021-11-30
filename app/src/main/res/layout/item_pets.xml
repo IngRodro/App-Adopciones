@@ -57,6 +57,8 @@
         android:layout_toRightOf="@+id/cv"
         android:layout_toEndOf="@+id/cv"
         tools:text= "" />
+
+
     <TextView
         android:id="@+id/txtSexo"
         android:layout_width="wrap_content"
@@ -66,5 +68,26 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         tools:text = ""/>
+
+        <TextView
+            android:id="@+id/txtPetsState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_below="@+id/txtPetsRaza"
+            android:layout_toRightOf="@+id/cv"
+            android:layout_toEndOf="@+id/cv"
+            tools:text= "" />
+
+        <Button
+            android:id="@+id/btnEliminar"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_rounded"
+            android:text="Eliminar"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

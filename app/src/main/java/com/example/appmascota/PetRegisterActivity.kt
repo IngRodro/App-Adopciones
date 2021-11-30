@@ -50,10 +50,6 @@ class PetRegisterActivity : AppCompatActivity() {
         val adaptador = ArrayAdapter(this,android.R.layout.simple_spinner_item,opciones)
         spPetSex.adapter = adaptador
 
-        fun showAcces() {
-            val siguienteActivity = Intent(this,InicioActivity::class.java)
-            startActivity(siguienteActivity)
-        }
 
         val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
         val iduser = prefs.getInt("id", 0)
@@ -80,7 +76,7 @@ class PetRegisterActivity : AppCompatActivity() {
                     var pet = PetsRequest(etPetName.getText().toString(), spPetSex.selectedItem.toString(), etPetAge.getText().toString().toInt(), etPetRaza.getText().toString(), imageinByte, Users(iduser, "", "", "", "", "", "",""))
                     SaveImage(pet)
 
-                    showAcces()
+
                 }else{
 
                 }
@@ -143,7 +139,12 @@ class PetRegisterActivity : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.IO).launch {
             getRetrofit().create(API::class.java).saveMascota(petsRequest)
+            showAcces()
         }
     }
 
+    fun showAcces() {
+        val siguienteActivity = Intent(this,InicioActivity::class.java)
+        startActivity(siguienteActivity)
+    }
 }

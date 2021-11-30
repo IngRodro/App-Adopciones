@@ -78,6 +78,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cvImg"
-        android:background="@drawable/button_rounded"/>
+        android:background="@drawable/button_rounded"
+        android:enabled="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

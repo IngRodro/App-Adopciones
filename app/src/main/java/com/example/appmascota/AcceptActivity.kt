@@ -1,10 +1,13 @@
 package com.example.appmascota
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Base64
+import android.webkit.WebView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -27,13 +30,16 @@ class AcceptActivity : AppCompatActivity() {
     private lateinit var tvSexo: TextView
     private lateinit var imgMascota: ImageView
     private lateinit var btnAdopcion: Button
+    var iduser: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_accept)
         val iduser = intent.extras?.getInt("iduser")
-
+        if(iduser != null) {
+            this.iduser = iduser
+        }
         var petsResponse : PetsResponse = petsResponsePublic
 
 
@@ -75,16 +81,27 @@ class AcceptActivity : AppCompatActivity() {
     }
 
     private fun SaveAdopcion(adopcion: Adopcion){
-
+        btnAdopcion.isEnabled = false
         try {
-
-
             CoroutineScope(Dispatchers.IO).launch {
-                getRetrofit().create(API::class.java).saveAdopcion(adopcion)
-
+               getRetrofit().create(API::class.java).saveAdopcion(adopcion)
+                val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
+                val editor = prefs.edit()
+                editor.putInt("id", iduser)
+                editor.commit()
+                inicio()
             }
         }catch (e: Exception){
-            println(e)
+            btnAdopcion.isEnabled = true
         }
     }
+    private fun inicio(){
+        val siguienteActivity = Intent(this,InicioActivity::class.java)
+        startActivity(siguienteActivity)
+    }
+    override fun onBackPressed() {
+        inicio()
+    }
+
+
 }

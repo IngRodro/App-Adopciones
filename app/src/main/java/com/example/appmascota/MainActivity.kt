@@ -48,6 +48,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun IniciarSesion(user: Users){
 
+
+        btnLogin.isEnabled = false
+        btnRegister.isEnabled = false
         CoroutineScope(Dispatchers.IO).launch {
 
             try {
@@ -74,14 +77,17 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }catch (e: Exception){
-
+            btnLogin.isEnabled = true
+            btnRegister.isEnabled = true
         }
         }
     }
 
 
     private fun showNoAcces() {
-        Toast.makeText(this,"LOGIN FAILED!!!",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"LOGIN FAILED!!!",Toast.LENGTH_SHORT).show()
+        btnLogin.isEnabled = true
+        btnRegister.isEnabled = true
     }
 
     private fun showAcces() {

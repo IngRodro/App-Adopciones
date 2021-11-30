@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
         <activity
+            android:name=".MisMascotasActivity"
+            android:exported="false" />
+        <activity
             android:name=".MisAdopcionesActivity"
             android:exported="false" />
         <activity
