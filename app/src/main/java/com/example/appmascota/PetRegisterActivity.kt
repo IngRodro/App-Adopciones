@@ -47,7 +47,7 @@ class PetRegisterActivity : AppCompatActivity() {
         }
 
         val opciones = arrayOf("Selecciona un sexo","Macho","Hembra")
-        val adaptador = ArrayAdapter(this,android.R.layout.simple_spinner_item,opciones)
+        val adaptador = ArrayAdapter(this,R.layout.item_spin, R.id.textview,opciones)
         spPetSex.adapter = adaptador
 
 
@@ -63,7 +63,7 @@ class PetRegisterActivity : AppCompatActivity() {
             var petraza = etPetRaza.text.toString()
             var petsex = spPetSex.selectedItem.toString()
 
-            if(petname.equals("") || petage.equals("") || petraza.equals("") || petsex.equals("")){
+            if(petname.equals("") || petage.equals("") || petraza.equals("") || petsex.equals("") || petsex.equals("Selecciona un sexo")){
                 //correct
                 Toast.makeText(this,"Complete todos los campos para continuar", Toast.LENGTH_SHORT).show()
             }else {

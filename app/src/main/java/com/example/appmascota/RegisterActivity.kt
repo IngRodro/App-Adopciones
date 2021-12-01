@@ -59,9 +59,6 @@ class RegisterActivity : AppCompatActivity() {
             "Ahuachapán"
         )
 
-        val municipiosvacio = arrayOf(
-            "Seleccione una opcion"
-        )
         val adaptador = ArrayAdapter(this, R.layout.item_spin, R.id.textview, departamentos)
         spDepartamento.adapter = adaptador
 
