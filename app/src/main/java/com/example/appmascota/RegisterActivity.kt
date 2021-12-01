@@ -151,7 +151,7 @@ class RegisterActivity : AppCompatActivity() {
                 if (!password.equals(paswordConfirmed)){
                     Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
                 }else{
-                    val user = Users(null,Usuario, password , Nombres, Apellidos,Departamento,Municipio,Telefono);
+                    val user = Users(null,Usuario, password , Nombres, Apellidos,Departamento,Municipio,Telefono)
 
                     SaveUser(user)
                     Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()

@@ -27,7 +27,7 @@
                 android:id="@+id/nav_settings"
                 android:title="Ajustes de cuenta" />
             <item
-                android:id="@+id/nav_login"
+                android:id="@+id/nav_close"
                 android:title="Cerrar Sesion" />
 
         </menu>

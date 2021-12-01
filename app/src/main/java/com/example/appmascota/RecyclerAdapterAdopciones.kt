@@ -58,8 +58,8 @@ class RecyclerAdapterAdopciones : RecyclerView.Adapter<RecyclerAdapterAdopciones
             textRaza.text = "Raza: " + adopcion.idMascota.raza
             textidAdopcion.text = "Id Adopcion: " + adopcion.idadopcion
             val backToBytes: ByteArray = Base64.decode(adopcion.idMascota.fotoString,Base64.URL_SAFE)
-            var bmp: Bitmap = BitmapFactory.decodeByteArray(backToBytes, 0, backToBytes.size );
-            imgPet.setImageBitmap(bmp);
+            var bmp: Bitmap = BitmapFactory.decodeByteArray(backToBytes, 0, backToBytes.size )
+            imgPet.setImageBitmap(bmp)
 
         }
 

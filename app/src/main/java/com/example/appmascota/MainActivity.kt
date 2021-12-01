@@ -1,10 +1,12 @@
 package com.example.appmascota
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import com.example.appmascota.API.API
 import com.example.appmascota.Modelos.Users
 import kotlinx.coroutines.CoroutineScope
@@ -33,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         etUser = findViewById(R.id.etUser)
         etPass= findViewById(R.id.etPass)
         btnLogin.setOnClickListener{
-            val user: Users = Users(null,etUser.getText().toString(), etPass.getText().toString(), "","" , "","","");
+            val user: Users = Users(null,etUser.getText().toString(), etPass.getText().toString(), "","" , "","","")
                 IniciarSesion(user)
         }
     }
@@ -93,10 +95,31 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showAcces() {
+        finish()
+        overridePendingTransition(0, 0)
         val siguienteActivity = Intent(this,InicioActivity::class.java)
         startActivity(siguienteActivity)
+        overridePendingTransition(0, 0)
         btnLogin.isEnabled = true
         btnRegister.isEnabled = true
     }
 
+
+    override fun onBackPressed() {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("Estas seguro que deseas cerrar sesion?")
+            .setPositiveButton("Si",
+                DialogInterface.OnClickListener { dialog, id ->
+                    finish()
+                    overridePendingTransition(0, 0)
+
+                })
+            .setNegativeButton("No",
+                DialogInterface.OnClickListener { dialog, id ->
+
+                })
+
+        var alertDialog: AlertDialog = builder.create()
+        alertDialog.show()
+    }
 }
