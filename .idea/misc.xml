@@ -3,6 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/LuiZDiaAz/Documents/GitHub/ProyectoPrograIV/app/src/main/res/layout/activity_accept.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/LuiZDiaAz/Documents/GitHub/ProyectoPrograIV/app/src/main/res/layout/activity_inicio.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/LuiZDiaAz/Documents/GitHub/ProyectoPrograIV/app/src/main/res/layout/activity_main.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/LuiZDiaAz/Documents/GitHub/ProyectoPrograIV/app/src/main/res/layout/activity_mis_adopciones.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/LuiZDiaAz/Documents/GitHub/ProyectoPrograIV/app/src/main/res/layout/activity_mis_mascotas.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/LuiZDiaAz/Documents/GitHub/ProyectoPrograIV/app/src/main/res/layout/activity_pet_register.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/LuiZDiaAz/Documents/GitHub/ProyectoPrograIV/app/src/main/res/layout/activity_register.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/LuiZDiaAz/Documents/GitHub/ProyectoPrograIV/app/src/main/res/layout/activity_user_settings.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/LuiZDiaAz/Documents/GitHub/ProyectoPrograIV/app/src/main/res/layout/item_adopcion_pets.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/LuiZDiaAz/Documents/GitHub/ProyectoPrograIV/app/src/main/res/layout/item_pets.xml" value="0.21784420289855072" />
+        <entry key="..\:/Users/LuiZDiaAz/Documents/GitHub/ProyectoPrograIV/app/src/main/res/layout/item_spin.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/LuiZDiaAz/Documents/GitHub/ProyectoPrograIV/app/src/main/res/menu/menu_navigation_items.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/r0dr0/OneDrive/Documents/GitHub/ProyectoPrograIV/app/src/main/res/drawable-v24/ic_key_icon_focused.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/r0dr0/OneDrive/Documents/GitHub/ProyectoPrograIV/app/src/main/res/drawable-v24/ic_user_icon.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/r0dr0/OneDrive/Documents/GitHub/ProyectoPrograIV/app/src/main/res/drawable-v24/ic_user_icon_focused.xml" value="0.37864583333333335" />

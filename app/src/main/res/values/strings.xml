@@ -10,11 +10,15 @@
     <string name="etLastNames_Hint">Apellidos</string>
     <string name="spDepartamento_Prompt">Seleccione un Departamento</string>
     <string name="spMunicipio_Prompt">Seleccione un Municipio</string>
+    <string name="sp_EditDepartamento_Text">Editar Departamento</string>
+    <string name="sp_EditMunicipio_Text">Editar Municipio</string>
     <string name="tvDescripcion_Text">Completa los Siguientes Datos:</string>
+    <string name="tvTitle_Text">Ajustes</string>
     <string name="etPetRaza">Raza de Mascota</string>
     <string name="etPetNombre">Nombre de Mascota</string>
     <string name="etPetEdad">Edad de Mascota</string>
     <string name="etPetSexoMascota">Sexo de Mascota</string>
     <string name="etnPhone">Telefono</string>
+    <string name="et_EditPhone">Editar Telefono</string>
     <string name="tvAppName_Text">PetsApp</string>
 </resources>
