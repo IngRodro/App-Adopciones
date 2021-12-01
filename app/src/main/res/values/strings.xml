@@ -14,6 +14,11 @@
     <string name="sp_EditMunicipio_Text">Editar Municipio</string>
     <string name="tvDescripcion_Text">Completa los Siguientes Datos:</string>
     <string name="tvTitle_Text">Ajustes</string>
+    <string name="tvTitle2_Text">Actualizar mi Telefono</string>
+    <string name="tvTitle3_Text">Actualizar mi Ubicacion</string>
+    <string name="tvTitleInicio_Text">Inicio</string>
+    <string name="tvTitleMascotas_Text">Mis Mascotas</string>
+    <string name="tvTitleAdopciones_Text">Mis Adopciones</string>
     <string name="etPetRaza">Raza de Mascota</string>
     <string name="etPetNombre">Nombre de Mascota</string>
     <string name="etPetEdad">Edad de Mascota</string>

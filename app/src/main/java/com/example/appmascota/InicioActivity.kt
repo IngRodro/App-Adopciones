@@ -48,6 +48,7 @@ class InicioActivity : AppCompatActivity() {
         val registerPetActivity = Intent(this, PetRegisterActivity::class.java)
         val adopcionesActivity = Intent(this, MisAdopcionesActivity::class.java)
         val mismascotasActivity = Intent(this, MisMascotasActivity::class.java)
+        val userSettingsActivity = Intent(this, UserSettingsActivity::class.java)
         navigationView.setNavigationItemSelectedListener(NavigationView.OnNavigationItemSelectedListener { item ->
             val id = item.itemId
 
@@ -106,7 +107,15 @@ class InicioActivity : AppCompatActivity() {
                     startActivity(registerPetActivity)
                     overridePendingTransition(0, 0)
                 }
-
+                R.id.nav_settings -> {
+                    val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
+                    val editor = prefs.edit()
+                    editor.putInt("id", iduser)
+                    editor.commit()
+                    finish()
+                    startActivity(userSettingsActivity)
+                    overridePendingTransition(0, 0)
+                }
             }
             false
         })

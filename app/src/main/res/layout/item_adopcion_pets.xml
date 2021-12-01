@@ -76,5 +76,15 @@
             android:layout_toRightOf="@+id/cva"
             android:layout_toEndOf="@+id/cva"
             tools:text= "" />
+
+        <TextView
+            android:id="@+id/txtNContacto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:layout_below="@+id/txtidAdopcion"
+            android:layout_toRightOf="@+id/cva"
+            android:layout_toEndOf="@+id/cva"
+            tools:text= "" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
