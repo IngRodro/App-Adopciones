@@ -46,6 +46,7 @@ class PetRegisterActivity : AppCompatActivity() {
         btnSeleccionar.setOnClickListener{
             cargarImagen()
         }
+        btnSaveImage.isEnabled = false
 
         val opciones = arrayOf("Selecciona un sexo","Macho","Hembra")
         val adaptador = ArrayAdapter(this,R.layout.item_spin, R.id.textview,opciones)
@@ -78,7 +79,6 @@ class PetRegisterActivity : AppCompatActivity() {
 
                     var pet = PetsRequest(etPetName.getText().toString(), spPetSex.selectedItem.toString(), etPetAge.getText().toString().toInt(), etPetRaza.getText().toString(), imageinByte, Users(iduser, "", "", "", "", "", "",""))
                     SaveImage(pet)
-
 
                 }else{
 
@@ -127,13 +127,14 @@ class PetRegisterActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == Activity.RESULT_OK && requestCode == REQUEST_GALLERY){
+            btnSaveImage.isEnabled = true
             imgMascota.setImageURI(data?.data)
         }
     }
 
     private fun getRetrofit(): Retrofit {
         return  Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8080/APIMascotas/")
+            .baseUrl("https://app-mascotas-programacion-iv.herokuapp.com/APIMascotas/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

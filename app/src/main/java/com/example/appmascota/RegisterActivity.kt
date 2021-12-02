@@ -151,8 +151,6 @@ class RegisterActivity : AppCompatActivity() {
                     val user = Users(null,Usuario, password , Nombres, Apellidos,Departamento,Municipio,Telefono)
 
                     SaveUser(user)
-                    Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
-                    showAcces()
                 }
             }
         }
@@ -161,7 +159,7 @@ class RegisterActivity : AppCompatActivity() {
     }
     private fun getRetrofit(): Retrofit {
         return  Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8080/APIMascotas/")
+            .baseUrl("https://app-mascotas-programacion-iv.herokuapp.com/APIMascotas/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
@@ -169,14 +167,28 @@ class RegisterActivity : AppCompatActivity() {
     private fun SaveUser(user: Users){
 
         CoroutineScope(Dispatchers.IO).launch {
-            getRetrofit().create(API::class.java).saveUser(user)
+            var call = getRetrofit().create(API::class.java).saveUser(user)
+            val respuesta = call.body()
 
+            runOnUiThread {
+
+                if(respuesta ==true){
+                    usuarioexistente()
+                }else{
+                    showAcces()
+                }
+            }
         }
     }
 
     private fun showAcces() {
+
+        finish()
+        overridePendingTransition(0, 0)
         val siguienteActivity = Intent(this,MainActivity::class.java)
         startActivity(siguienteActivity)
+        overridePendingTransition(0, 0)
+        Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
     }
 
 
@@ -186,6 +198,10 @@ class RegisterActivity : AppCompatActivity() {
         val siguienteActivity = Intent(this,MainActivity::class.java)
         startActivity(siguienteActivity)
         overridePendingTransition(0, 0)
+    }
+
+    fun usuarioexistente(){
+        Toast.makeText(this,"El Usuario que intentas registrar ya existe, intenta con otro",Toast.LENGTH_SHORT).show()
     }
 
 }

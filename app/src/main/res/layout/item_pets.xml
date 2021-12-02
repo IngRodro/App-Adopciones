@@ -31,35 +31,38 @@
         android:layout_height="90dp"
         android:scaleType="centerCrop" />
         </androidx.cardview.widget.CardView>
-    <TextView
-        android:layout_marginTop="30dp"
-        android:id="@+id/txtPetsName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="18dp"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/cv"
-        android:layout_toEndOf="@+id/cv"
-        tools:text= "" />
-    <TextView
-        android:id="@+id/txtEdad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18dp"
-        android:layout_below="@+id/txtPetsName"
-        android:layout_toRightOf="@+id/cv"
-        android:layout_toEndOf="@+id/cv"
-        tools:text = ""/>
-    <TextView
-        android:id="@+id/txtPetsRaza"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18dp"
-        android:layout_below="@+id/txtEdad"
-        android:layout_toRightOf="@+id/cv"
-        android:layout_toEndOf="@+id/cv"
-        tools:text= "" />
+
+        <TextView
+            android:id="@+id/txtPetsName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="30dp"
+            android:layout_toEndOf="@+id/cv"
+            android:layout_toRightOf="@+id/cv"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            tools:text="" />
+
+        <TextView
+            android:id="@+id/txtEdad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtPetsName"
+            android:layout_toEndOf="@+id/cv"
+            android:layout_toRightOf="@+id/cv"
+            android:textSize="18dp"
+            tools:text="" />
+
+        <TextView
+            android:id="@+id/txtPetsRaza"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtEdad"
+            android:layout_toEndOf="@+id/cv"
+            android:layout_toRightOf="@+id/cv"
+            android:textSize="18dp"
+            tools:text="" />
 
 
     <TextView
@@ -77,20 +80,21 @@
             android:id="@+id/txtPetsState"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
             android:layout_below="@+id/txtPetsRaza"
-            android:layout_toRightOf="@+id/cv"
             android:layout_toEndOf="@+id/cv"
-            tools:text= "" />
+            android:layout_toRightOf="@+id/cv"
+            android:textSize="18dp"
+            tools:text="" />
+
         <TextView
             android:id="@+id/txtPetsidAdopcion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
             android:layout_below="@+id/txtPetsState"
-            android:layout_toRightOf="@+id/cv"
             android:layout_toEndOf="@+id/cv"
-            tools:text= "" />
+            android:layout_toRightOf="@+id/cv"
+            android:textSize="18dp"
+            tools:text="" />
 
         <Button
             android:id="@+id/btnEliminar"
@@ -109,15 +113,15 @@
             android:id="@+id/btnConfirmarEntrega"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:textSize="15dp"
-            android:padding="10dp"
-            android:background="@drawable/button_rounded"
-            android:text="Entregar"
-            android:layout_marginEnd="5dp"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:visibility="invisible"/>
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/button_rounded"
+            android:padding="10dp"
+            android:text="Entregar"
+            android:textSize="15dp"
+            android:visibility="invisible" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

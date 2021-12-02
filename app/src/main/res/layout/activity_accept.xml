@@ -44,8 +44,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvEdad" />
+        app:layout_constraintTop_toTopOf="@+id/tvRaza" />
 
+
+    <TextView
+        android:id="@+id/tvRaza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:fontFamily="@font/montserratbold"
+        android:text="TextView"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvEdad" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvImg"
@@ -74,11 +87,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
+        android:background="@drawable/button_rounded"
+        android:enabled="true"
         android:text="Adoptar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cvImg"
-        android:background="@drawable/button_rounded"
-        android:enabled="true"/>
+        app:layout_constraintTop_toBottomOf="@+id/cvImg" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,6 +30,7 @@ class AcceptActivity : AppCompatActivity() {
     private lateinit var tvSexo: TextView
     private lateinit var imgMascota: ImageView
     private lateinit var btnAdopcion: Button
+    private lateinit var tvRaza : TextView
     var iduser: Int = 0
 
 
@@ -48,6 +49,7 @@ class AcceptActivity : AppCompatActivity() {
         tvSexo = findViewById(R.id.tvSexo)
         imgMascota = findViewById(R.id.imgMascotaSelect)
         btnAdopcion = findViewById(R.id.btnAceptarAdopcion)
+        tvRaza = findViewById(R.id.tvRaza)
 
             tvNombre.setText("Nombre: " + petsResponse.nombre)
             if(petsResponse.edad > 1){
@@ -57,6 +59,7 @@ class AcceptActivity : AppCompatActivity() {
                 tvEdad.setText("Edad: " + petsResponse.edad.toString() + " Año")
             }
             tvSexo.setText("Genero: " + petsResponse.sexo)
+            tvRaza.setText("Raza: " + petsResponse.raza)
 
             val backToBytes: ByteArray = Base64.decode(petsResponse.fotoString,Base64.URL_SAFE)
             var bmp: Bitmap = BitmapFactory.decodeByteArray(backToBytes, 0, backToBytes.size )
@@ -75,7 +78,7 @@ class AcceptActivity : AppCompatActivity() {
 
     private fun getRetrofit(): Retrofit {
         return  Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8080/APIMascotas/")
+            .baseUrl("https://app-mascotas-programacion-iv.herokuapp.com/APIMascotas/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

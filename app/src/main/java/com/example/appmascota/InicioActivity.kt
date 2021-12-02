@@ -54,6 +54,10 @@ class InicioActivity : AppCompatActivity() {
 
             when (id) {
                 R.id.nav_home -> {
+                    val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
+                    val editor = prefs.edit()
+                    editor.putInt("id", iduser)
+                    editor.commit()
                     finish()
                     overridePendingTransition(0, 0)
                     startActivity(inicioActivity)
@@ -124,7 +128,7 @@ class InicioActivity : AppCompatActivity() {
 
     private fun getRetrofit(): Retrofit {
         return  Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8080/APIMascotas/")
+            .baseUrl("https://app-mascotas-programacion-iv.herokuapp.com/APIMascotas/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
@@ -132,27 +136,31 @@ class InicioActivity : AppCompatActivity() {
     private fun CargarLista(iduser: Int){
 
         PetsMutableList.clear()
-        CoroutineScope(Dispatchers.IO).launch {
-            val call = getRetrofit().create(API::class.java).listaMascotas(Users(iduser, "","","","","","",""))
-            val respuesta = call.body()?: emptyList()
+        try{
+            CoroutineScope(Dispatchers.IO).launch {
+                val call = getRetrofit().create(API::class.java).listaMascotas(Users(iduser, "","","","","","",""))
+                val respuesta = call.body()?: emptyList()
 
-            runOnUiThread{
-                for(i in respuesta)  {
-                    var petsResponse: PetsResponse = PetsResponse(
-                        i.idmascota,
-                        i.nombre,
-                        i.sexo,
-                        i.edad,
-                        i.raza,
-                        i.fotoString,
-                        i.iduser,
-                        i.estado,
-                         i.idAdopcion)
-                    PetsMutableList.add(petsResponse)
+                runOnUiThread{
+                    for(i in respuesta)  {
+                        var petsResponse: PetsResponse = PetsResponse(
+                            i.idmascota,
+                            i.nombre,
+                            i.sexo,
+                            i.edad,
+                            i.raza,
+                            i.fotoString,
+                            i.iduser,
+                            i.estado,
+                            i.idAdopcion)
+                        PetsMutableList.add(petsResponse)
+                    }
+
+                    setUpRecyclerView(iduser)
                 }
-
-                setUpRecyclerView(iduser)
             }
+        }catch (e: Exception){
+
         }
     }
 

@@ -124,13 +124,16 @@ class UserSettingsActivity : AppCompatActivity() {
             var Departamento = spEditDepartamento.selectedItem.toString()
             var Municipio = spEditMunicipio.selectedItem.toString()
             if(txtTelefono.equals("") && Municipio.equals("Seleccione un Municipio") && Departamento.equals("Seleccione un Departamento")){
-
+                guardarajuste()
+                Toast.makeText(this, "No se realizaron cambios", Toast.LENGTH_SHORT).show()
             }else{
 
                 if(Municipio.equals("Seleccione un Municipio") && !Departamento.equals("Seleccione un Departamento")){
                     Toast.makeText(this, "Seleccione un Municipio para actualizar su  ubicacion", Toast.LENGTH_SHORT).show()
                 }else{
                     UpdateUser(Users(iduser, "", "", "", "", Departamento, Municipio, txtTelefono.text.toString()))
+                    guardarajuste()
+                    Toast.makeText(this, "Cambios realizados con exito", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -138,7 +141,7 @@ class UserSettingsActivity : AppCompatActivity() {
 
     private fun getRetrofit(): Retrofit {
         return  Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8080/APIMascotas/")
+            .baseUrl("https://app-mascotas-programacion-iv.herokuapp.com/APIMascotas/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
@@ -152,6 +155,18 @@ class UserSettingsActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
+        val editor = prefs.edit()
+        editor.putInt("id", iduser)
+        editor.commit()
+        finish()
+        overridePendingTransition(0, 0)
+        val siguienteActivity = Intent(this,InicioActivity::class.java)
+        startActivity(siguienteActivity)
+        overridePendingTransition(0, 0)
+    }
+
+    fun guardarajuste(){
         val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
         val editor = prefs.edit()
         editor.putInt("id", iduser)

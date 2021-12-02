@@ -35,22 +35,20 @@ class MainActivity : AppCompatActivity() {
         etUser = findViewById(R.id.etUser)
         etPass= findViewById(R.id.etPass)
         btnLogin.setOnClickListener{
-            val user: Users = Users(null,etUser.getText().toString(), etPass.getText().toString(), "","" , "","","")
+            val user = Users(null,etUser.getText().toString(), etPass.getText().toString(), "","" , "","","")
                 IniciarSesion(user)
         }
     }
 
     private fun getRetrofit(): Retrofit {
         return  Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8080/APIMascotas/")
+            .baseUrl("https://app-mascotas-programacion-iv.herokuapp.com/APIMascotas/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
 
     private fun IniciarSesion(user: Users){
-
-
         btnLogin.isEnabled = false
         btnRegister.isEnabled = false
         try {
@@ -90,7 +88,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun showNoAcces() {
-        Toast.makeText(this,"LOGIN FAILED!!!",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this,"Error de Sesion",Toast.LENGTH_SHORT).show()
         btnLogin.isEnabled = true
         btnRegister.isEnabled = true
     }
@@ -108,7 +106,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         val builder = AlertDialog.Builder(this)
-        builder.setMessage("Estas seguro que deseas cerrar sesion?")
+        builder.setMessage("Estas seguro que deseas cerrar la aplicacion?")
             .setPositiveButton("Si",
                 DialogInterface.OnClickListener { dialog, id ->
                     finish()

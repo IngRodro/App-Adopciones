@@ -7,12 +7,10 @@ interface API {
 
     //Inicio de Sesion
     @POST("User/inicio")
-    suspend fun login(
-        @Body users: Users
-    ): Response<UserResponse>
+    suspend fun login(@Body users: Users): Response<UserResponse>
 
     @POST("User/save")
-    suspend fun saveUser(@Body users: Users)
+    suspend fun saveUser(@Body users: Users):Response<Boolean>
 
     @POST("User/update")
     suspend fun updateUser(@Body users: Users)

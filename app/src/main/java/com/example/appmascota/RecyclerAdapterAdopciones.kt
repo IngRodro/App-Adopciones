@@ -41,7 +41,6 @@ class RecyclerAdapterAdopciones : RecyclerView.Adapter<RecyclerAdapterAdopciones
 
         val textName = view.findViewById(R.id.txtPetsNamea) as TextView
         val textEdad = view.findViewById(R.id.txtEdada) as TextView
-        val textSexo = view.findViewById(R.id.txtSexoa) as TextView
         val imgPet = view.findViewById(R.id.ivPetsa) as ImageView
         val textRaza:TextView = view.findViewById(R.id.txtPetsRazaa)
         val textidAdopcion: TextView = view.findViewById(R.id.txtidAdopcion)

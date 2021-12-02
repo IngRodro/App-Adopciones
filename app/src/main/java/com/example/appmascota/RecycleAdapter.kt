@@ -31,7 +31,7 @@ import androidx.core.content.ContextCompat.startActivity
 
 
 
-public lateinit var petsResponsePublic: PetsResponse
+lateinit var petsResponsePublic: PetsResponse
 private var iduser: Int = 0
 private var booleanp: Boolean = false
 class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
@@ -167,7 +167,7 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
 private  fun getRetrofit(): Retrofit {
     return  Retrofit.Builder()
-        .baseUrl("http://10.0.2.2:8080/APIMascotas/")
+        .baseUrl("https://app-mascotas-programacion-iv.herokuapp.com/APIMascotas/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 }
