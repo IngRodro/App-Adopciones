@@ -1,21 +1,38 @@
 package com.example.appmascota
 
+import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
+import com.example.appmascota.API.API
+import com.example.appmascota.Modelos.Users
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class UserSettingsActivity : AppCompatActivity() {
 
     private lateinit var spEditDepartamento: Spinner
     private lateinit var spEditMunicipio: Spinner
+    private lateinit var btnActualizar: Button
+    private lateinit var txtTelefono: EditText
+    var iduser:Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_settings)
         spEditDepartamento = findViewById(R.id.sp_EditDepartamento)
         spEditMunicipio= findViewById(R.id.sp_EditMunicipio)
+        btnActualizar = findViewById(R.id.btnActualizar)
+        txtTelefono = findViewById(R.id.et_EditPhone)
+
+        val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
+        iduser = prefs.getInt("id", 0)
 
         val departamentos = arrayOf(
             "Seleccione un Departamento",
@@ -101,8 +118,49 @@ class UserSettingsActivity : AppCompatActivity() {
                 spEditMunicipio.adapter=adaptadorMuni
             }
         }
+
+        btnActualizar.setOnClickListener {
+
+            var Departamento = spEditDepartamento.selectedItem.toString()
+            var Municipio = spEditMunicipio.selectedItem.toString()
+            if(txtTelefono.equals("") && Municipio.equals("Seleccione un Municipio") && Departamento.equals("Seleccione un Departamento")){
+
+            }else{
+
+                if(Municipio.equals("Seleccione un Municipio") && !Departamento.equals("Seleccione un Departamento")){
+                    Toast.makeText(this, "Seleccione un Municipio para actualizar su  ubicacion", Toast.LENGTH_SHORT).show()
+                }else{
+                    UpdateUser(Users(iduser, "", "", "", "", Departamento, Municipio, txtTelefono.text.toString()))
+                }
+            }
+        }
     }
 
+    private fun getRetrofit(): Retrofit {
+        return  Retrofit.Builder()
+            .baseUrl("http://10.0.2.2:8080/APIMascotas/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
 
+    private fun UpdateUser(user: Users){
+
+        CoroutineScope(Dispatchers.IO).launch {
+            getRetrofit().create(API::class.java).updateUser(user)
+
+        }
+    }
+
+    override fun onBackPressed() {
+        val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
+        val editor = prefs.edit()
+        editor.putInt("id", iduser)
+        editor.commit()
+        finish()
+        overridePendingTransition(0, 0)
+        val siguienteActivity = Intent(this,InicioActivity::class.java)
+        startActivity(siguienteActivity)
+        overridePendingTransition(0, 0)
+    }
 
 }

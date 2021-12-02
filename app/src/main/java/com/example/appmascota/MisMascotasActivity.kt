@@ -28,11 +28,12 @@ class MisMascotasActivity : AppCompatActivity() {
     lateinit var drawerLayout: DrawerLayout
     val mAdapter : RecyclerAdapter = RecyclerAdapter()
     var PetsMutableList:MutableList<PetsResponse> = mutableListOf()
+    var iduser: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mis_mascotas)
         val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
-        val iduser = prefs.getInt("id", 0)
+        iduser = prefs.getInt("id", 0)
 
 
         val toolbar = findViewById<MaterialToolbar>(R.id.topAppBar)
@@ -148,5 +149,17 @@ class MisMascotasActivity : AppCompatActivity() {
         mRecyclerView.layoutManager = LinearLayoutManager(this)
         mAdapter.RecyclerAdapter(PetsMutableList, this, iduser, true)
         mRecyclerView.adapter = mAdapter
+    }
+
+    override fun onBackPressed() {
+        val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
+        val editor = prefs.edit()
+        editor.putInt("id", iduser)
+        editor.commit()
+        finish()
+        overridePendingTransition(0, 0)
+        val siguienteActivity = Intent(this,InicioActivity::class.java)
+        startActivity(siguienteActivity)
+        overridePendingTransition(0, 0)
     }
 }

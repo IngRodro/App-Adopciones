@@ -69,8 +69,9 @@ class MainActivity : AppCompatActivity() {
                             val editor = prefs.edit()
                             editor.putInt("id", respuesta.id)
                             editor.commit()
+                            showAcces()
                         }
-                        showAcces()
+
                     } else {
                         showNoAcces()
                     }

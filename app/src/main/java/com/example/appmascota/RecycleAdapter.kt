@@ -74,7 +74,9 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
         fun bind(petsResponse: PetsResponse, context: Context) {
 
             textName.text = "Nombre: " + petsResponse.nombre
-            if (petsResponse.edad == 1) {
+            if(petsResponse.edad == 0){
+                textEdad.text = "Edad: Menos de un Año"
+            } else if (petsResponse.edad == 1) {
 
                 textEdad.text = "Edad: " + petsResponse.edad.toString() + " Año"
             } else {

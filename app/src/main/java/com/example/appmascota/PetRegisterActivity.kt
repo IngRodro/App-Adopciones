@@ -31,6 +31,7 @@ class PetRegisterActivity : AppCompatActivity() {
     private lateinit var etPetAge :EditText
     private lateinit var spPetSex :Spinner
     private lateinit var etPetRaza :EditText
+    var iduser: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +53,7 @@ class PetRegisterActivity : AppCompatActivity() {
 
 
         val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
-        val iduser = prefs.getInt("id", 0)
+        iduser = prefs.getInt("id", 0)
 
 
         this
@@ -142,15 +143,26 @@ class PetRegisterActivity : AppCompatActivity() {
         try {
             CoroutineScope(Dispatchers.IO).launch {
                 getRetrofit().create(API::class.java).saveMascota(petsRequest)
-                showAcces()
+                returnInicio()
             }
         }catch (e: Exception){
 
         }
     }
 
-    fun showAcces() {
+    fun returnInicio() {
+        val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
+        val editor = prefs.edit()
+        editor.putInt("id", iduser)
+        editor.commit()
+        finish()
+        overridePendingTransition(0, 0)
         val siguienteActivity = Intent(this,InicioActivity::class.java)
         startActivity(siguienteActivity)
+        overridePendingTransition(0, 0)
+    }
+
+    override fun onBackPressed() {
+        returnInicio()
     }
 }

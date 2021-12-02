@@ -161,7 +161,7 @@ class RegisterActivity : AppCompatActivity() {
     }
     private fun getRetrofit(): Retrofit {
         return  Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8080/APIMascotas")
+            .baseUrl("http://10.0.2.2:8080/APIMascotas/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
@@ -177,6 +177,15 @@ class RegisterActivity : AppCompatActivity() {
     private fun showAcces() {
         val siguienteActivity = Intent(this,MainActivity::class.java)
         startActivity(siguienteActivity)
+    }
+
+
+    override fun onBackPressed() {
+        finish()
+        overridePendingTransition(0, 0)
+        val siguienteActivity = Intent(this,MainActivity::class.java)
+        startActivity(siguienteActivity)
+        overridePendingTransition(0, 0)
     }
 
 }

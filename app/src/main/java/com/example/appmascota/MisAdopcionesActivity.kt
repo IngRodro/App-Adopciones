@@ -30,13 +30,14 @@ class MisAdopcionesActivity : AppCompatActivity() {
     lateinit var drawerLayout: DrawerLayout
     val mAdapter : RecyclerAdapterAdopciones = RecyclerAdapterAdopciones()
     var Adopciones:MutableList<Adopcion> = mutableListOf()
+    var iduser :Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mis_adopciones)
 
         val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
-        val iduser = prefs.getInt("id", 0)
+        iduser = prefs.getInt("id", 0)
 
         CargarLista(iduser)
 
@@ -147,5 +148,17 @@ class MisAdopcionesActivity : AppCompatActivity() {
         mRecyclerView.layoutManager = LinearLayoutManager(this)
         mAdapter.RecyclerAdapter(Adopciones, this)
         mRecyclerView.adapter = mAdapter
+    }
+
+    override fun onBackPressed() {
+        val prefs = getSharedPreferences("shared_login_data", Context.MODE_PRIVATE)
+        val editor = prefs.edit()
+        editor.putInt("id", iduser)
+        editor.commit()
+        finish()
+        overridePendingTransition(0, 0)
+        val siguienteActivity = Intent(this,InicioActivity::class.java)
+        startActivity(siguienteActivity)
+        overridePendingTransition(0, 0)
     }
 }

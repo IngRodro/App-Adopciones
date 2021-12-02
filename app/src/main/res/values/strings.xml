@@ -21,7 +21,7 @@
     <string name="tvTitleAdopciones_Text">Mis Adopciones</string>
     <string name="etPetRaza">Raza de Mascota</string>
     <string name="etPetNombre">Nombre de Mascota</string>
-    <string name="etPetEdad">Edad de Mascota</string>
+    <string name="etPetEdad">Edad de Mascota (En años)</string>
     <string name="etPetSexoMascota">Sexo de Mascota</string>
     <string name="etnPhone">Telefono</string>
     <string name="et_EditPhone">Editar Telefono</string>

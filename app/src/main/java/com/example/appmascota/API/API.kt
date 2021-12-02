@@ -14,6 +14,9 @@ interface API {
     @POST("User/save")
     suspend fun saveUser(@Body users: Users)
 
+    @POST("User/update")
+    suspend fun updateUser(@Body users: Users)
+
     @POST("Mascota/upload")
     suspend fun saveMascota(@Body petsRequest: PetsRequest)
 
