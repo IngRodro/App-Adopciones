@@ -121,16 +121,20 @@ class InicioActivity : AppCompatActivity() {
                     overridePendingTransition(0, 0)
                 }
             }
-            false
+            true
         })
         CargarLista(iduser)
     }
 
-    private fun getRetrofit(): Retrofit {
-        return  Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8080/APIMascotas/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+    private fun getRetrofit(): Retrofit? {
+        try {
+            return  Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:8080/APIMascotas/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        }catch (e: Exception){
+            return null
+        }
     }
 
     private fun CargarLista(iduser: Int){
@@ -138,8 +142,9 @@ class InicioActivity : AppCompatActivity() {
         PetsMutableList.clear()
         try{
             CoroutineScope(Dispatchers.IO).launch {
-                val call = getRetrofit().create(API::class.java).listaMascotas(Users(iduser, "","","","","","",""))
-                val respuesta = call.body()?: emptyList()
+                val call = getRetrofit()?.create(API::class.java)
+                    ?.listaMascotas(Users(iduser, "","","","","","",""))
+                val respuesta = call?.body() ?: emptyList()
 
                 runOnUiThread{
                     for(i in respuesta)  {

@@ -41,10 +41,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getRetrofit(): Retrofit {
-        return  Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8080/APIMascotas/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+            return Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:8080/APIMascotas/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+
     }
 
 
@@ -54,11 +56,11 @@ class MainActivity : AppCompatActivity() {
         try {
         CoroutineScope(Dispatchers.IO).launch {
 
-                val call = getRetrofit().create(API::class.java).login(user)
-                val respuesta = call.body()
+                    val call = getRetrofit().create(API::class.java).login(user)
+                    val respuesta = call.body()
 
             runOnUiThread {
-                if (call.isSuccessful) {
+                if (call?.isSuccessful == true) {
 
                     var estado = respuesta?.estado ?: ""
                     if (estado.equals("Acces")) {
