@@ -1,12 +1,12 @@
 package com.example.appmascota
 
+import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
-import androidx.appcompat.app.AlertDialog
 import com.example.appmascota.API.API
 import com.example.appmascota.Modelos.Users
 import kotlinx.coroutines.CoroutineScope
@@ -17,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.Exception
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : Activity() {
     private lateinit var etUser: EditText
     private lateinit var etPass: EditText
     private lateinit var btnRegister: Button
